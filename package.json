@@ -1,0 +1,24 @@
+{
+  "name": "ez-cli",
+  "version": "0.0.1",
+  "description": "CLI tool for those who can never remember bash commands.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ez": "bin/ez.js"
+  },
+  "keywords": [
+    "bash",
+    "zsh",
+    "cli"
+  ],
+  "author": "Joey Gauthier",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "shelljs": "^0.7.8",
+    "yargs": "^9.0.1"
+  }
+}
