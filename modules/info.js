@@ -1,41 +1,33 @@
-var inquire = require('inquirer');
 var files = require('../lib/files');
-var finish = require('../lib/finalAnswer');
 var shell = require('shelljs');
-
-var whichPlatform = {
-  name: 'platform',
-  type: 'list',
-  message: 'Which platform/OS are you using?',
-  choices: ['Linux', 'MacOS', 'Windows'],
-  default: 1
-};
+var libInfo = require('../lib/libInfo');
 
 module.exports = {
   whereAmI: function() {
-    // finish.show(files.getFullPath());
     files.getFullPath(true);
   },
   hardDriveSpace: function(platform) {
-    inquire.prompt([whichPlatform]).then(function(answer) {
-      switch(answer.platform) {
-        case 'Linux':
-        case 'MacOS':
-          shell.exec('df');
-          break;
-        case 'Windows':
-          shell.exec('fsutil volume diskfree c:');
-          break;
-      }
-    });
+    var unixBased = libInfo.unixOs();
+    if (unixBased) {
+      shell.exec('df');
+    } else {
+      shell.exec('fsutil volume diskfree c:');
+    }
   },
   calendar: function(platform) {
-    inquire.prompt([whichPlatform]).then(function(answer) {
-      if (answer.platform === 'Linux' || answer.platform === 'MacOS') {
-        shell.exec('cal');
-      } else {
-        console.log('Sorry, Windows does not have this functionality by default.');
-      }
-    });
+    var unixBased = libInfo.unixOs();
+    if (unixBased) {
+      shell.exec('cal');
+    } else {
+      console.log('Sorry, Windows does not have this functionality by default.');
+    }
+  },
+  listPrinters: function() {
+    var unixBased = libInfo.unixOs();
+    if (unixBased) {
+      shell.exec('lpstat -p');
+    } else {
+      console.log('Sorry, the location of this command varies in Windows versions. This would be difficult to support.');
+    }
   }
 };

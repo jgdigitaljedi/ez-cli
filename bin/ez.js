@@ -7,14 +7,20 @@ var argv = yargs.usage('$0 command')
   .command('copyFolder', 'Copy a folder somewhere.', function() {
     return copy.copyFolder();
   })
+  .command('copyFile', 'Copy a file somewhere.', function() {
+    return copy.copyFile();
+  })
   .command('whereAmI', 'Find path to current directory.', function() {
     return info.whereAmI();
   })
-  .command('driveSpace', 'See how much hard drive space you have.', function () {
+  .command('driveSpace', 'See how much hard drive space you have.', function() {
     return info.hardDriveSpace();
   })
   .command('calendar', 'Print calendar to terminal', function() {
     return info.calendar();
+  })
+  .command('listPrinters', 'Lists available printers.', function() {
+    return info.listPrinters();
   })
   .help('h')
   .alias('h', 'help')
