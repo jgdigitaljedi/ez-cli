@@ -10,6 +10,12 @@ var argv = yargs.usage('$0 command')
   .command('whereAmI', 'Find path to current directory.', function() {
     return info.whereAmI();
   })
+  .command('driveSpace', 'See how much hard drive space you have.', function () {
+    return info.hardDriveSpace();
+  })
+  .command('calendar', 'Print calendar to terminal', function() {
+    return info.calendar();
+  })
   .help('h')
   .alias('h', 'help')
   .argv;
