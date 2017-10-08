@@ -13,10 +13,10 @@ The OS platform is detected, the appropriate prompts are provided to gather info
 
 
 ## Installation
-I don't plan on publishing this to npm until I have a significant amount of functionality built in. Until then, you can clone this repo and run:
+I don't plan on publishing this to npm until I have a significant amount of functionality built in. Until then, you can clone this repo, cd into the directory, and run:
 ```
 npm i
-npm link
+npm link --scope=<your_username>
 ```
 
 ### Usage
@@ -26,6 +26,13 @@ ez <command>
 
 ### Commands and Compatibility
 
+NOTE: The Windows commands are not yet tested. Also, while trying to support the possibility of running from git-bash or CMD (although I'm not sure how you would run this from CMD), this is a big difference in compatibility between the two.
+
+Windows Compatibility:<br>
+GB = git-bash<br>
+CMD = CMD<br>
+X = both
+
 |Command     |Linux | MacOS | Windows | Description                               |
 |------------|------|-------|---------|-------------------------------------------|
 |calendar    |  X   |   X   |         | Prints calendar to console.               |
@@ -33,5 +40,6 @@ ez <command>
 |copyFolder  |  X   |   X   |    X    | Copies folder and contents to destination.|
 |driveSpace  |  X   |   X   |    X    | Prints hard drive info to console.        |
 |listPrinters|  X   |   X   |         | Lists available printers.                 |
+|viewSshKey  |  X   |   X   |    X    | Prints public key to console.             |
 |whereAmI    |  X   |   X   |    X    | Prints full path to current directory.    |
 

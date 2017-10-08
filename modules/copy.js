@@ -29,7 +29,13 @@ module.exports = {
       if (unixBased) {
         finish.yesNoExec('cp -r ' + answers.from + ' ' + answers.to);
       } else {
-        finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
+        inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
+          if (term.terminal === 'git-bash') {
+            finish.yesNoExec('cp -r ' + answers.from + ' ' + answers.to);
+          } else {
+            finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
+          }
+        });
       }
     });
   },
@@ -59,7 +65,13 @@ module.exports = {
       if (unixBased) {
         finish.yesNoExec('cp ' + answers.file + ' ' + answers.destination);
       } else {
-        finish.yesNoExec('copy ' + answers.file + ' ' + answers.destination);
+        inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
+          if (term.terminal === 'git-bash') {
+            finish.yesNoExec('copy ' + answers.file + ' ' + answers.destination);
+          } else {
+            finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
+          }
+        });
       }
     });
   }

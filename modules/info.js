@@ -1,6 +1,7 @@
 var files = require('../lib/files');
 var shell = require('shelljs');
 var libInfo = require('../lib/libInfo');
+var inquire = require('inquirer');
 
 module.exports = {
   whereAmI: function() {
@@ -11,7 +12,13 @@ module.exports = {
     if (unixBased) {
       shell.exec('df');
     } else {
-      shell.exec('fsutil volume diskfree c:');
+      inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
+        if (term.terminal === 'git-bash') {
+          shell.exec('df');
+        } else {
+          shell.exec('fsutil volume diskfree c:');
+        }
+      });
     }
   },
   calendar: function(platform) {
