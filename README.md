@@ -15,6 +15,7 @@ The OS platform is detected, the appropriate prompts are provided to gather info
 ## Installation
 I don't plan on publishing this to npm until I have a significant amount of functionality built in. Until then, you can clone this repo and run:
 ```
+npm i
 npm link
 ```
 

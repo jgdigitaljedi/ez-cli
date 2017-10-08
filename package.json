@@ -14,8 +14,8 @@
     "zsh",
     "cli"
   ],
-  "author": "Joey Gauthier",
-  "license": "MIT",
+  "author": "Joey Gauthier <digitaljedi@outlook.com> (https://joeyg.me)",
+  "license": "MIT License",
   "dependencies": {
     "inquirer": "^3.3.0",
     "shelljs": "^0.7.8",
