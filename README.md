@@ -38,6 +38,7 @@ X = both
 |calendar    |  X   |   X   |         | Prints calendar to console.               |
 |copyFile    |  X   |   X   |    X    | Copies file to destination.               |
 |copyFolder  |  X   |   X   |    X    | Copies folder and contents to destination.|
+|copySshKey  |  X   |   X   |         | Copies ssh public key to clipboard.       |
 |driveSpace  |  X   |   X   |    X    | Prints hard drive info to console.        |
 |listPrinters|  X   |   X   |         | Lists available printers.                 |
 |viewSshKey  |  X   |   X   |    X    | Prints public key to console.             |

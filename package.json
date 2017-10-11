@@ -18,6 +18,8 @@
   "license": "MIT License",
   "dependencies": {
     "inquirer": "^3.3.0",
+    "node-clip": "^0.1.1",
+    "node-cmd": "^3.0.0",
     "shelljs": "^0.7.8",
     "yargs": "^9.0.1"
   }

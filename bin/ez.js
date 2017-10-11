@@ -14,6 +14,9 @@ var argv = yargs.usage('$0 command')
   .command('copyFolder', 'Copy a folder somewhere.', function() {
     return copyMod.copyFolder();
   })
+  .command('copySshKey', 'Copy ssh key to clipboard', function() {
+    sshMod.copySshToClipboad();
+  })
   .command('driveSpace', 'See how much hard drive space you have.', function() {
     return info.hardDriveSpace();
   })
