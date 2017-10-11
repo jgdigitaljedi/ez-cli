@@ -5,7 +5,7 @@ var cb = require('../lib/clipboard');
 
 module.exports = {
   copySshToClipboad: function() {
-    if (libInfo.unixOs) {
+    if (libInfo.unixOs()) {
       var key = shell.cat('~/.ssh/id_rsa.pub').stdout;
       cb.setClipboard(key);
     } else {

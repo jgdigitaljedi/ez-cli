@@ -1,7 +1,7 @@
 {
   "name": "ez-cli",
   "version": "0.0.1",
-  "description": "CLI tool for those who can never remember bash commands.",
+  "description": "CLI tool for those who can never remember bash commands or just don't want to type them out.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,9 @@
   "keywords": [
     "bash",
     "zsh",
-    "cli"
+    "cli",
+    "clipboard",
+    "ssh"
   ],
   "author": "Joey Gauthier <digitaljedi@outlook.com> (https://joeyg.me)",
   "license": "MIT License",

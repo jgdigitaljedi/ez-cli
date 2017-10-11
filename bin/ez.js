@@ -3,6 +3,7 @@ var yargs = require('yargs');
 var copyMod = require('../modules/copy');
 var info = require('../modules/info');
 var sshMod = require('../modules/ssh');
+var nodejs = require('../modules/node');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -19,6 +20,9 @@ var argv = yargs.usage('$0 command')
   })
   .command('driveSpace', 'See how much hard drive space you have.', function() {
     return info.hardDriveSpace();
+  })
+  .command('listGlobalNpm', 'List globally installed npm packages.', function() {
+    return nodejs.listGlobalNpm();
   })
   .command('listPrinters', 'Lists available printers.', function() {
     return info.listPrinters();
