@@ -4,6 +4,7 @@ var copyMod = require('../modules/copy');
 var info = require('../modules/info');
 var sshMod = require('../modules/ssh');
 var nodejs = require('../modules/node');
+var speed = require('../modules/speedTest');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -26,6 +27,9 @@ var argv = yargs.usage('$0 command')
   })
   .command('listPrinters', 'Lists available printers.', function() {
     return info.listPrinters();
+  })
+  .command('speedTest', 'Run a speedtest from the console.', function() {
+    return speed.test();
   })
   .command('viewSshKey', 'Prints public ssh key to console.', function() {
     return sshMod.viewSshKey();

@@ -33,17 +33,19 @@ NOTE: The Windows commands are not yet tested. Also, while trying to support the
 Windows Compatibility:<br>
 GB = git-bash<br>
 CMD = CMD<br>
-X = both
+X = both<br>
+? = I think it will, but it isn't tested
 
 |Command      |Linux | MacOS | Windows | Description                               |
 |-------------|------|-------|---------|-------------------------------------------|
 |calendar     |  X   |   X   |         | Prints calendar to console.               |
-|copyFile     |  X   |   X   |    X    | Copies file to destination.               |
-|copyFolder   |  X   |   X   |    X    | Copies folder and contents to destination.|
+|copyFile     |  X   |   X   |    ?    | Copies file to destination.               |
+|copyFolder   |  X   |   X   |    ?    | Copies folder and contents to destination.|
 |copySshKey   |  X   |   X   |         | Copies ssh public key to clipboard.       |
-|driveSpace   |  X   |   X   |    X    | Prints hard drive info to console.        |
-|listGlobalNpm|  X   |   X   |    X    | Lists globally installed npm packages.    |
+|driveSpace   |  X   |   X   |    ?    | Prints hard drive info to console.        |
+|listGlobalNpm|  X   |   X   |    ?    | Lists globally installed npm packages.    |
 |listPrinters |  X   |   X   |         | Lists available printers.                 |
-|viewSshKey   |  X   |   X   |    X    | Prints public key to console.             |
-|whereAmI     |  X   |   X   |    X    | Prints full path to current directory.    |
+|speedTest    |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
+|viewSshKey   |  X   |   X   |    ?    | Prints public key to console.             |
+|whereAmI     |  X   |   X   |    ?    | Prints full path to current directory.    |
 
