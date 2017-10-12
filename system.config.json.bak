@@ -1,0 +1,9 @@
+{
+    "platform": null,
+    "unix": null,
+    "linux": {
+        "version": null,
+        "packageManager": null
+    },
+    "zipcode": null
+}

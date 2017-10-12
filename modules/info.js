@@ -2,6 +2,7 @@ var files = require('../lib/files');
 var shell = require('shelljs');
 var libInfo = require('../lib/libInfo');
 var inquire = require('inquirer');
+var config = require('../system.config');
 
 module.exports = {
   whereAmI: function() {
@@ -36,5 +37,8 @@ module.exports = {
     } else {
       console.log('Sorry, the location of this command varies in Windows versions. This would be difficult to support.');
     }
+  },
+  seeConfig: function() {
+    console.log('config', config);
   }
 };

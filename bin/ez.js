@@ -35,6 +35,9 @@ var argv = yargs.usage('$0 command')
   .command('speedTest', 'Run a speedtest from the console.', function() {
     return speed.test();
   })
+  .command('viewConfig', 'View EZ-CLI config.', function() {
+    return info.seeConfig();
+  })
   .command('viewSshKey', 'Prints public ssh key to console.', function() {
     return sshMod.viewSshKey();
   })

@@ -47,6 +47,7 @@ X = both<br>
 |listGlobalNpm|  X   |   X   |    ?    | Lists globally installed npm packages.    |
 |listPrinters |  X   |   X   |         | Lists available printers.                 |
 |speedTest    |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
+|viewConfig   |  X   |   X   |    X    | Show EZ-CLI config                        |
 |viewSshKey   |  X   |   X   |    ?    | Prints public key to console.             |
 |whereAmI     |  X   |   X   |    ?    | Prints full path to current directory.    |
 

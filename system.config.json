@@ -1,0 +1,9 @@
+{
+    "platform": "darwin",
+    "unix": null,
+    "linux": {
+        "version": null,
+        "packageManager": null
+    },
+    "zipcode": null
+}
