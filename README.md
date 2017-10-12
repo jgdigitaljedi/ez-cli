@@ -43,6 +43,7 @@ X = both<br>
 |copyFolder   |  X   |   X   |    ?    | Copies folder and contents to destination.|
 |copySshKey   |  X   |   X   |         | Copies ssh public key to clipboard.       |
 |driveSpace   |  X   |   X   |    ?    | Prints hard drive info to console.        |
+|linuxUpdates |  X   |       |         | Fetches/refreshes Linux system updates.   |
 |listGlobalNpm|  X   |   X   |    ?    | Lists globally installed npm packages.    |
 |listPrinters |  X   |   X   |         | Lists available printers.                 |
 |speedTest    |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |

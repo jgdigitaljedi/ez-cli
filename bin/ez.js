@@ -5,6 +5,7 @@ var info = require('../modules/info');
 var sshMod = require('../modules/ssh');
 var nodejs = require('../modules/node');
 var speed = require('../modules/speedTest');
+var deb = require('../modules/linuxDeb');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -18,6 +19,9 @@ var argv = yargs.usage('$0 command')
   })
   .command('copySshKey', 'Copy ssh key to clipboard', function() {
     sshMod.copySshToClipboad();
+  })
+  .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
+    deb.getUpdates();
   })
   .command('driveSpace', 'See how much hard drive space you have.', function() {
     return info.hardDriveSpace();
