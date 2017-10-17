@@ -26,6 +26,9 @@ var argv = yargs.usage('$0 command')
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
     deb.getUpdates();
   })
+  .command('nodeKill', 'Kills node process.', function() {
+    return nodejs.killNode();
+  })
   .command('npmGlobalsList', 'List globally installed npm packages.', function() {
     return nodejs.listGlobalNpm();
   })

@@ -46,6 +46,7 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |fileCopy      |  X   |   X   |    ?    | Copies file to destination.               |
 |folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.|
 |linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.   |
+|nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.        |
 |npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.    |
 |printersList  |  X   |   X   |         | Lists available printers.                 |
 |speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
