@@ -36,18 +36,20 @@ CMD = CMD<br>
 X = both<br>
 ? = I think it will, but it isn't tested
 
-|Command      |Linux | MacOS | Windows | Description                               |
-|-------------|------|-------|---------|-------------------------------------------|
-|calendar     |  X   |   X   |         | Prints calendar to console.               |
-|copyFile     |  X   |   X   |    ?    | Copies file to destination.               |
-|copyFolder   |  X   |   X   |    ?    | Copies folder and contents to destination.|
-|copySshKey   |  X   |   X   |         | Copies ssh public key to clipboard.       |
-|driveSpace   |  X   |   X   |    ?    | Prints hard drive info to console.        |
-|linuxUpdates |  X   |       |         | Fetches/refreshes Linux system updates.   |
-|listGlobalNpm|  X   |   X   |    ?    | Lists globally installed npm packages.    |
-|listPrinters |  X   |   X   |         | Lists available printers.                 |
-|speedTest    |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
-|viewConfig   |  X   |   X   |    X    | Show EZ-CLI config                        |
-|viewSshKey   |  X   |   X   |    ?    | Prints public key to console.             |
-|whereAmI     |  X   |   X   |    ?    | Prints full path to current directory.    |
+The idea behind the commands are to say WHAT, then the action. This way all tasks pertaining to ssh keys, file operations, etc will be grouped in the list since they will start with the WHAT.
+
+|Command       |Linux | MacOS | Windows | Description                               |
+|--------------|------|-------|---------|-------------------------------------------|
+|calendar      |  X   |   X   |         | Prints calendar to console.               |
+|configView    |  X   |   X   |    X    | Show EZ-CLI config                        |
+|driveSpace    |  X   |   X   |    ?    | Prints hard drive info to console.        |
+|fileCopy      |  X   |   X   |    ?    | Copies file to destination.               |
+|folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.|
+|linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.   |
+|npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.    |
+|printersList  |  X   |   X   |         | Lists available printers.                 |
+|speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
+|sshKeyCopy    |  X   |   X   |         | Copies ssh public key to clipboard.       |
+|sshKeyView    |  X   |   X   |    ?    | Prints public key to console.             |
+|whereAmI      |  X   |   X   |    ?    | Prints full path to current directory.    |
 
