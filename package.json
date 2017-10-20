@@ -1,6 +1,6 @@
 {
   "name": "ez-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI tool for those who can never remember bash commands or just don't want to type them out.",
   "main": "index.js",
   "scripts": {

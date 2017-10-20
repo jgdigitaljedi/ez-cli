@@ -4,7 +4,7 @@ JUST STARTED THIS IN WHAT LITTLE SPARE TIME I HAVE. There's not much here yet, b
 
 I AM NOT RESPOSIBLE FOR ANY HARDWARE FAILURES, DELETED CONTENT, CAREER ENDING EMAILS SENT TO YOUR BOSS, WIPED HARD DRIVES, OR ANYTHING ELSE BAD THAT HAPPENS TO YOU, YOUR MACHINE, YOUR NETWORK MACHINES, ETC. USE THIS AT YOUR OWN RISK!! YOU ASSUME ANY RESPOSIBILITY FOR ANYTHING THAT MIGHT HAPPEN AS A RESULT OF USING THIS TOOL! YOU HAVE BEEN WARNED.
 
-That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. The Windows commands have not been tested as I do not have access to a Windows machine.
+That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. The Windows commands have not been tested as I do not have access to a Windows machine. I'm kind of targeting the low hanging fruit at the moment and testing the water, but I plan on really getting deeper into useful commands after I feel like I've figured out the best way to do things.
 
 ### What this does
 The goal of this is to provide a simple way to execute commands in an intuative way. If you're like me, you often forget commands or the options that need to be passed to them to get the desired result. This tool aims to make all of that easier.
@@ -47,22 +47,24 @@ X = both<br>
 
 The idea behind the commands are to say WHAT, then the action. This way all tasks pertaining to ssh keys, file operations, etc will be grouped in the list since they will start with the WHAT.
 
-|Command       |Linux | MacOS | Windows | Description                               |
-|--------------|------|-------|---------|-------------------------------------------|
-|calendar      |  X   |   X   |         | Prints calendar to console.               |
-|configView    |  X   |   X   |    X    | Show EZ-CLI config                        |
-|driveSpace    |  X   |   X   |    ?    | Prints hard drive info to console.        |
-|fileCopy      |  X   |   X   |    ?    | Copies file to destination.               |
-|folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.|
-|init          |  X   |   X   |    X    | Build OS specific config. RUN THIS FIRST! |
-|linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.   |
-|nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.        |
-|nodeVersion   |  X   |   X   |    X    | Print NodeJS version to console.          |
-|npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.    |
-|npmVersion    |  X   |   X   |    X    | Print npm version to console.             |
-|printersList  |  X   |   X   |         | Lists available printers.                 |
-|speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
-|sshKeyCopy    |  X   |   X   |         | Copies ssh public key to clipboard.       |
-|sshKeyView    |  X   |   X   |    ?    | Prints public key to console.             |
-|whereAmI      |  X   |   X   |    ?    | Prints full path to current directory.    |
+|Command       |Linux | MacOS | Windows | Description                                       |
+|--------------|------|-------|---------|---------------------------------------------------|
+|calendar      |  X   |   X   |         | Prints calendar to console.                       |
+|configView    |  X   |   X   |    X    | Show EZ-CLI config                                |
+|driveSpace    |  X   |   X   |    ?    | Prints hard drive info to console.                |
+|fileCopy      |  X   |   X   |    ?    | Copies file to destination.                       |
+|folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.        |
+|init          |  X   |   X   |    X    | Build OS specific config. RUN THIS FIRST!         |
+|linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.           |
+|nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.                |
+|nodeVersion   |  X   |   X   |    X    | Print NodeJS version to console.                  |
+|npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.            |
+|npmVersion    |  X   |   X   |    X    | Print npm version to console.                     |
+|ping          |  X   |   X   |    GB   | Pings location and prints result to console.      |
+|printersList  |  X   |   X   |         | Lists available printers.                         |
+|processId     |  X   |   X   |    ?    | Prints PID to console, errors if no process found.|
+|speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.             |
+|sshKeyCopy    |  X   |   X   |         | Copies ssh public key to clipboard.               |
+|sshKeyView    |  X   |   X   |    ?    | Prints public key to console.                     |
+|whereAmI      |  X   |   X   |    ?    | Prints full path to current directory.            |
 

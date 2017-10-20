@@ -7,6 +7,7 @@ var nodejs = require('../modules/node');
 var speed = require('../modules/speedTest');
 var deb = require('../modules/linuxDeb');
 var init = require('../modules/init');
+var installs = require('../modules/installs');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -27,6 +28,9 @@ var argv = yargs.usage('$0 command')
   .command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
     return init.writeConfig();
   })
+  .command('installCurl', 'Installs curl command line utility', function() {
+    return installs.installCurl();
+  })
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
     deb.getUpdates();
   })
@@ -42,8 +46,14 @@ var argv = yargs.usage('$0 command')
   .command('npmVersion', 'Shows npm version.', function() {
     return nodejs.npmVersion();
   })
+  .command('ping', 'Pings an IP address or URL.', function() {
+    return info.ping();
+  })
   .command('printersList', 'Lists available printers.', function() {
     return info.listPrinters();
+  })
+  .command('processId', 'Gets PID(s) of process by name.', function() {
+    return info.pidName();
   })
   .command('speedTest', 'Run a speedtest from the console.', function() {
     return speed.test();
