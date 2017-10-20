@@ -45,6 +45,7 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |driveSpace    |  X   |   X   |    ?    | Prints hard drive info to console.        |
 |fileCopy      |  X   |   X   |    ?    | Copies file to destination.               |
 |folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.|
+|init          |  X   |   X   |    X    | Build OS specific config. RUN THIS FIRST! |
 |linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.   |
 |nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.        |
 |npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.    |

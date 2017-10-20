@@ -1,9 +1,13 @@
 {
     "platform": "darwin",
-    "unix": null,
+    "unix": true,
     "linux": {
         "version": null,
         "packageManager": null
     },
-    "zipcode": null
+    "zipcode": "78653",
+    "teachMode": false,
+    "windows": {
+        "gitBash": false
+    }
 }

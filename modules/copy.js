@@ -1,7 +1,9 @@
+'use strict';
+
 var inquire = require('inquirer');
 var files = require('../lib/files');
 var finish = require('../lib/finalAnswer');
-var libInfo = require('../lib/libInfo');
+var config = require('../system.config');
 
 module.exports = {
   copyFolder: function() {
@@ -25,17 +27,11 @@ module.exports = {
     ];
     
     inquire.prompt(questions).then(function(answers) {
-      var unixBased = libInfo.unixOs();
+      var unixBased = config.unix || config.windows.gitBash;
       if (unixBased) {
         finish.yesNoExec('cp -r ' + answers.from + ' ' + answers.to);
       } else {
-        inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
-          if (term.terminal === 'git-bash') {
-            finish.yesNoExec('cp -r ' + answers.from + ' ' + answers.to);
-          } else {
-            finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
-          }
-        });
+        finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
       }
     });
   },
@@ -61,17 +57,11 @@ module.exports = {
     ];
 
     inquire.prompt(questions).then(function(answers) {
-      var unixBased = libInfo.unixOs();
+      var unixBased = config.unix || config.windows.gitBash;
       if (unixBased) {
         finish.yesNoExec('cp ' + answers.file + ' ' + answers.destination);
       } else {
-        inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
-          if (term.terminal === 'git-bash') {
-            finish.yesNoExec('copy ' + answers.file + ' ' + answers.destination);
-          } else {
-            finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
-          }
-        });
+        finish.yesNoExec('xcopy ' + answers.from + '\* ' + answers.to + '\\' + answers.to + '/e /i');
       }
     });
   }

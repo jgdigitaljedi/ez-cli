@@ -5,5 +5,9 @@
         "version": null,
         "packageManager": null
     },
-    "zipcode": null
+    "zipcode": null,
+    "teachMode": false,
+    "windows": {
+        "gitBash": false
+    }
 }

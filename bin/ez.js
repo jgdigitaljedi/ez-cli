@@ -6,6 +6,7 @@ var sshMod = require('../modules/ssh');
 var nodejs = require('../modules/node');
 var speed = require('../modules/speedTest');
 var deb = require('../modules/linuxDeb');
+var init = require('../modules/init');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -22,6 +23,9 @@ var argv = yargs.usage('$0 command')
   })
   .command('folderCopy', 'Copy a folder somewhere.', function() {
     return copyMod.copyFolder();
+  })
+  .command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
+    return init.writeConfig();
   })
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
     deb.getUpdates();

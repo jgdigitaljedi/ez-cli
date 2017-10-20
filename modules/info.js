@@ -1,44 +1,50 @@
 var files = require('../lib/files');
 var shell = require('shelljs');
-var libInfo = require('../lib/libInfo');
 var inquire = require('inquirer');
 var config = require('../system.config');
+var log = require('../lib/log');
 
 module.exports = {
   whereAmI: function() {
     files.getFullPath(true);
   },
   hardDriveSpace: function(platform) {
-    var unixBased = libInfo.unixOs();
+    var unixBased = config.unix || config.windows.gitBash;
     if (unixBased) {
       shell.exec('df');
+      if (config.teachMode) {
+        log.teach('df');
+      }
     } else {
-      inquire.prompt(libInfo.windowsTerminal()).then(function(term) {
-        if (term.terminal === 'git-bash') {
-          shell.exec('df');
-        } else {
-          shell.exec('fsutil volume diskfree c:');
-        }
-      });
+      shell.exec('fsutil volume diskfree c:');
+      if (config.teachMode) {
+        log.teach('fsutil volume diskfree c:');
+      }
     }
   },
   calendar: function(platform) {
-    var unixBased = libInfo.unixOs();
+    var unixBased = config.unix || config.windows.gitBash;
     if (unixBased) {
       shell.exec('cal');
+      if (config.teachMode) {
+        log.teach('cal');
+      }
     } else {
-      console.log('Sorry, Windows does not have this functionality by default.');
+      log.warn('Sorry, Windows does not have this functionality by default.');
     }
   },
   listPrinters: function() {
-    var unixBased = libInfo.unixOs();
+    var unixBased = config.unix || config.windows.gitBash;
     if (unixBased) {
       shell.exec('lpstat -p');
+      if (config.teachMode) {
+        log.teach('lpstat -p');
+      }
     } else {
-      console.log('Sorry, the location of this command varies in Windows versions. This would be difficult to support.');
+      log.warn('Sorry, the location of this command varies in Windows versions. This would be difficult to support.');
     }
   },
   seeConfig: function() {
-    console.log('config', config);
+    log.general('config', config);
   }
 };
