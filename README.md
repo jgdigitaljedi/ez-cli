@@ -6,12 +6,17 @@ I AM NOT RESPOSIBLE FOR ANY HARDWARE FAILURES, DELETED CONTENT, CAREER ENDING EM
 
 That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. The Windows commands have not been tested as I do not have access to a Windows machine.
 
-Also, you'll notice that my approach this seems a little random. I'm trying all different types of operations at the moment to figure out the scope of what can be accomplished before I really start focusing on a command or command type and really hammer out all of the possibilities.
-
 ### What this does
 The goal of this is to provide a simple way to execute commands in an intuative way. If you're like me, you often forget commands or the options that need to be passed to them to get the desired result. This tool aims to make all of that easier.
 
 The OS platform is detected, the appropriate prompts are provided to gather info about what you are trying to do, and if the command provides info it is run immediately, but if it performs an action you are prompted to confirm before execution.
+
+### Teach Mode
+When you run:
+```
+ez init
+```
+...you will be asked if you want to enable teach mode. Teach mode is a way to help you learn thse commands while you are using ez-cli. When enabled, it will output what command was actually run after it is executed so you can see what is going on behind the scenes and, hopefully, learn the command over time.
 
 
 ## Installation
@@ -19,6 +24,10 @@ I don't plan on publishing this to npm until I have a significant amount of func
 ```
 npm i
 npm link --scope=<your_username>
+```
+Then, for the sake of building your personal config file to handle differences in operating systems, run:
+```
+ez init
 ```
 
 ### Usage
@@ -48,7 +57,9 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |init          |  X   |   X   |    X    | Build OS specific config. RUN THIS FIRST! |
 |linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.   |
 |nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.        |
+|nodeVersion   |  X   |   X   |    X    | Print NodeJS version to console.          |
 |npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.    |
+|npmVersion    |  X   |   X   |    X    | Print npm version to console.             |
 |printersList  |  X   |   X   |         | Lists available printers.                 |
 |speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.     |
 |sshKeyCopy    |  X   |   X   |         | Copies ssh public key to clipboard.       |

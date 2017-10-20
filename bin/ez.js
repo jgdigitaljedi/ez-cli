@@ -33,8 +33,14 @@ var argv = yargs.usage('$0 command')
   .command('nodeKill', 'Kills node process.', function() {
     return nodejs.killNode();
   })
+  .command('nodeVersion', 'Shows NodeJS version.', function() {
+    return nodejs.nodeVersion();
+  })
   .command('npmGlobalsList', 'List globally installed npm packages.', function() {
     return nodejs.listGlobalNpm();
+  })
+  .command('npmVersion', 'Shows npm version.', function() {
+    return nodejs.npmVersion();
   })
   .command('printersList', 'Lists available printers.', function() {
     return info.listPrinters();
