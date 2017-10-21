@@ -63,7 +63,7 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |printersList  |  X   |   X   | Lists available printers.                         |
 |processId     |  X   |   X   | Prints PID to console, errors if no process found.|
 |speedTest     |  X   |   X   | Run speedtest.net from your terminal.             |
-|sshKeyCopy    |  X   |   X   | Copies ssh public key to clipboard.               |
+|sshKeyClip    |  X   |   X   | Copies ssh public key to clipboard.               |
 |sshKeyView    |  X   |   X   | Prints public key to console.                     |
 |whereAmI      |  X   |   X   | Prints full path to current directory.            |
 

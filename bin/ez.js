@@ -65,7 +65,7 @@ var argv = yargs.usage('$0 command')
   .command('speedTest', 'Run a speedtest from the console.', function() {
     return speed.test();
   })
-  .command('sshKeyCopy', 'Copy ssh key to clipboard', function() {
+  .command('sshKeyClip', 'Copy ssh key to clipboard', function() {
     sshMod.copySshToClipboad();
   })
   .command('sshKeyView', 'Prints public ssh key to console.', function() {

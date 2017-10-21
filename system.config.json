@@ -9,5 +9,9 @@
     "teachMode": false,
     "windows": {
         "gitBash": false
+    },
+    "shell": {
+        "type": "zsh",
+        "config": "/home/joey/.zshrc"
     }
 }

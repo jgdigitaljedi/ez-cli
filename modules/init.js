@@ -6,6 +6,9 @@ var configMethods = require('../lib/configMethods');
 var exec = require('child_process').exec;
 var inquire = require('inquirer');
 var chalk = require('chalk');
+var log = require('../lib/log');
+var files = require('../lib/files');
+var helpers = require('../lib/helpers');
 
 function deb(version) {
     return version.indexOf('ubuntu') >= 0 || version.indexOf('debian') >= 0;
@@ -16,6 +19,43 @@ function yum(version) {
         version.indexOf('centos') >= 0 ||
         version.indexOf('hat') >= 0 ||
         version.indexOf('scientific') >= 0;
+}
+
+function termType() {
+    inquire.prompt([
+        {
+            type: 'input',
+            name: 'ttype',
+            message: 'What type of shell are you using (bash, zsh, fish, ksh, etc)?',
+            validate: function(val) {
+                return val.length > 0;
+            }
+        },
+        {
+            type: 'input',
+            name: 'tconfig',
+            message: 'What is the path to your terminal config (~/.zshrc, ~/.bashrc, etc)?',
+            validate: function(value) {
+                var exists = files.fileExists(value);
+                return exists ? true : false;
+            }
+        }
+    ]).then(function(answers) {
+        if (!config.hasOwnProperty('shell')) {
+            config.shell = {};
+        }
+        config.shell.type = answers.ttype;
+        config.shell.config = answers.tconfig;
+        if (config.shell.config.trim().indexOf('~') === 0) {
+            helpers.homeShort().then(function(home) {
+                config.shell.config = helpers.removeLineBreak(home) + config.shell.config.slice(1);
+                configMethods.writeConfig(config);
+            });
+        } else {
+            configMethods.writeConfig(config);
+        }
+        log.success('Success! Your config is written!');
+    });
 }
 
 function linuxCheck(plat) {
@@ -81,8 +121,7 @@ module.exports = {
                     if (plat === 'win32') {
                         config.windows.gitBash = answers.windblows === 0;
                     }
-                    configMethods.writeConfig(config);
-                    console.log(chalk.italic.cyan('Success! Your config is written!'));
+                    termType();
                 });
             });
 
