@@ -7,16 +7,30 @@ var exec = require('child_process').exec;
 var inquire = require('inquirer');
 var chalk = require('chalk');
 
+function deb(version) {
+    return version.indexOf('ubuntu') >= 0 || version.indexOf('debian') >= 0;
+}
+
+function yum(version) {
+    return version.index('fedora') >= 0 ||
+        version.indexOf('centos') >= 0 ||
+        version.indexOf('hat') >= 0 ||
+        version.indexOf('scientific') >= 0;
+}
+
 function linuxCheck(plat) {
     return new Promise((resolve, reject) => {
         if (plat === 'linux' || plat === 'freebsd') {
             exec('lsb_release -ds 2>/dev/null || cat /etc/*release 2>/dev/null | head -n1 || uname -om')
                 .stdout.on('data', function(data) {
-                    var version = data.toLowerCase();
+                    var version = data.toLowerCase().replace(/^\s+|\s+$/g, '');
                     config.linux.version = version;
-                    if (version.indexOf('ubuntu') >= 0 || version.indexOf('debian') >= 0) {
-                        config.linux.packageManager = 'debian';
+                    if (deb(version)) {
+                        config.linux.packageManager = 'apt';
+                    } else if (yum(version)) {
+                        config.linux.packageManager = 'yum';
                     }
+                    resolve(true);
                 });
         } else {
             resolve(true);

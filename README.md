@@ -37,35 +37,33 @@ ez <command>
 
 ### Commands and Compatibility
 
-NOTE: The Windows commands are not yet tested. Also, while trying to support the possibility of running from git-bash or CMD (although I'm not sure how you would run this from CMD), this is a big difference in compatibility between the two.
+NOTE: I'm abandoning the Windows specific commands for now as I have no access to a Windows machine anywhere. I started on some Windows commands, but they are untested. In theory I think a lot of this will run in Git-Bash, but I don't know. I am not even going to attempt Windows specific commands for now until maybe I pickup a cheap, old box and toss a Windows installation on it. Use at your own risk for Windows. (or put in a pull request if you have access and want to write and test the commands)
 
-Windows Compatibility:<br>
-GB = git-bash<br>
-CMD = CMD<br>
-X = both<br>
-? = I think it will, but it isn't tested
+Also, for Linux, the package manager specific commands are untested except for apt. That said, I'm pretty sure the yum commands I've written will work fine, and I haven't circled back to add pacman and yast.
 
 The idea behind the commands are to say WHAT, then the action. This way all tasks pertaining to ssh keys, file operations, etc will be grouped in the list since they will start with the WHAT.
 
-|Command       |Linux | MacOS | Windows | Description                                       |
-|--------------|------|-------|---------|---------------------------------------------------|
-|calendar      |  X   |   X   |         | Prints calendar to console.                       |
-|configView    |  X   |   X   |    X    | Show EZ-CLI config                                |
-|driveSpace    |  X   |   X   |    ?    | Prints hard drive info to console.                |
-|fileCopy      |  X   |   X   |    ?    | Copies file to destination.                       |
-|folderCopy    |  X   |   X   |    ?    | Copies folder and contents to destination.        |
-|init          |  X   |   X   |    X    | Build OS specific config. RUN THIS FIRST!         |
-|installCurl   |  X   |   X   |         | Installs curl command line utility.               |
-|linuxUpdates  |  X   |       |         | Fetches/refreshes Linux system updates.           |
-|nodeKill      |  X   |   X   |    ?    | Kills Node process if one running.                |
-|nodeVersion   |  X   |   X   |    X    | Print NodeJS version to console.                  |
-|npmGlobalsList|  X   |   X   |    ?    | Lists globally installed npm packages.            |
-|npmVersion    |  X   |   X   |    X    | Print npm version to console.                     |
-|ping          |  X   |   X   |    GB   | Pings location and prints result to console.      |
-|printersList  |  X   |   X   |         | Lists available printers.                         |
-|processId     |  X   |   X   |    ?    | Prints PID to console, errors if no process found.|
-|speedTest     |  X   |   X   |    ?    | Run speedtest.net from your terminal.             |
-|sshKeyCopy    |  X   |   X   |         | Copies ssh public key to clipboard.               |
-|sshKeyView    |  X   |   X   |    ?    | Prints public key to console.                     |
-|whereAmI      |  X   |   X   |    ?    | Prints full path to current directory.            |
+|Command       |Linux | MacOS | Description                                       |
+|--------------|------|-------|---------------------------------------------------|
+|calendar      |  X   |   X   | Prints calendar to console.                       |
+|configView    |  X   |   X   | Show EZ-CLI config                                |
+|configTeach   |  X   |   X   | Toggles teach mode.                               |
+|configZip     |  X   |   X   | Change zipcode in config.                         |
+|driveSpace    |  X   |   X   | Prints hard drive info to console.                |
+|fileCopy      |  X   |   X   | Copies file to destination.                       |
+|folderCopy    |  X   |   X   | Copies folder and contents to destination.        |
+|init          |  X   |   X   | Build OS specific config. RUN THIS FIRST!         |
+|installCurl   |  X   |   X   | Installs curl command line utility.               |
+|linuxUpdates  |  X   |       | Fetches/refreshes Linux system updates.           |
+|nodeKill      |  X   |   X   | Kills Node process if one running.                |
+|nodeVersion   |  X   |   X   | Print NodeJS version to console.                  |
+|npmGlobalsList|  X   |   X   | Lists globally installed npm packages.            |
+|npmVersion    |  X   |   X   | Print npm version to console.                     |
+|ping          |  X   |   X   | Pings location and prints result to console.      |
+|printersList  |  X   |   X   | Lists available printers.                         |
+|processId     |  X   |   X   | Prints PID to console, errors if no process found.|
+|speedTest     |  X   |   X   | Run speedtest.net from your terminal.             |
+|sshKeyCopy    |  X   |   X   | Copies ssh public key to clipboard.               |
+|sshKeyView    |  X   |   X   | Prints public key to console.                     |
+|whereAmI      |  X   |   X   | Prints full path to current directory.            |
 

@@ -5,9 +5,10 @@ var info = require('../modules/info');
 var sshMod = require('../modules/ssh');
 var nodejs = require('../modules/node');
 var speed = require('../modules/speedTest');
-var deb = require('../modules/linuxDeb');
+var linux = require('../modules/linux');
 var init = require('../modules/init');
 var installs = require('../modules/installs');
+var configEx = require('../modules/configExposed');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -15,6 +16,12 @@ var argv = yargs.usage('$0 command')
   })
   .command('configView', 'View EZ-CLI config.', function() {
     return info.seeConfig();
+  })
+  .command('configTeach', 'Toggle teach mode.', function() {
+    return configEx.toggleTeachMode();
+  })
+  .command('configZip', 'Change zipcode in config.', function() {
+    return configEx.changeZipcode();
   })
   .command('driveSpace', 'See how much hard drive space you have.', function() {
     return info.hardDriveSpace();
@@ -26,13 +33,13 @@ var argv = yargs.usage('$0 command')
     return copyMod.copyFolder();
   })
   .command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
-    return init.writeConfig();
+    init.writeConfig();
   })
   .command('installCurl', 'Installs curl command line utility', function() {
     return installs.installCurl();
   })
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
-    deb.getUpdates();
+    linux.getUpdates();
   })
   .command('nodeKill', 'Kills node process.', function() {
     return nodejs.killNode();

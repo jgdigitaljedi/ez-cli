@@ -5,14 +5,7 @@ var util = require('../lib/util');
 var exec = require('child_process').exec;
 var log = require('../lib/log');
 var inquire = require('inquirer');
-
-function puts(error, stdout, stderr) {
-  if (!error) {
-    log.general(stdout);
-  } else {
-    log.err(error);
-  }
-}
+var helpers = require('../lib/helpers');
 
 function checkForInstall(which) {
   return new Promise(function(resolve, reject) {
@@ -49,16 +42,25 @@ module.exports = {
         return;
       }
       if (config.platform === 'darwin') {
-        exec('brew install curl', puts);
-        if (config.teachMode) {
-          log.teach('brew install curl');
-        }
+        exec('brew install curl').stdout.on('data', function(data) {
+          log.general(helpers.removeLineBreak(data));
+        }).on('exit', function() {
+          if (config.teachMode) {
+            log.teach('brew install curl');
+          }
+        });
       } else {
-        if (config.linux.packageManager === 'debian') {
+        if (config.linux.packageManager === 'apt') {
           inquire.prompt([util.sudoPrompt]).then(function(answer) {
             var lCase = answer.sudo.toLowerCase();
             if (lCase === 'y' || lCase == 'yes') {
-              exec('sudo apt-get install curl', puts);
+              exec('sudo apt-get install curl').stdout.on('data', function(data) {
+                log.general(helpers.removeLineBreak(data));
+              }).on('exit', function() {
+                if (config.teachMode) {
+                  log.teach('sudo apt-get install curl');
+                }
+              });
             } else {
               log.warn('User aborted!');
             }
