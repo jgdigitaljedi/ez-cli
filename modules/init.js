@@ -36,8 +36,25 @@ function termType() {
             name: 'tconfig',
             message: 'What is the path to your terminal config (~/.zshrc, ~/.bashrc, etc)?',
             validate: function(value) {
-                var exists = files.fileExists(value);
-                return exists ? true : false;
+                return new Promise(function(resolve, reject) {
+                    if (value.indexOf('~') === 0) {
+                        files.fileExists(value)
+                            .then(function(result) {
+                                var exists;
+                                if (result.hasOwnProperty('fullHome')) {
+                                    console.log('hellyeah', result.fullHome);
+                                    exists = true;
+                                } else {
+                                    exists = false;
+                                }
+                                console.log('exists', exists);
+                                resolve(exists);
+                            });
+                    } else {
+                        var ex = files.fileExists(value);
+                        resolve(ex ? true : false);
+                    }
+                });
             }
         }
     ]).then(function(answers) {
@@ -46,7 +63,9 @@ function termType() {
         }
         config.shell.type = answers.ttype;
         config.shell.config = answers.tconfig;
+
         if (config.shell.config.trim().indexOf('~') === 0) {
+            // I hate that I'm doing this again, but will circle back and find a more elegan solution
             helpers.homeShort().then(function(home) {
                 config.shell.config = helpers.removeLineBreak(home) + config.shell.config.slice(1);
                 configMethods.writeConfig(config);
