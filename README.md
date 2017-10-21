@@ -62,6 +62,7 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |ping          |  X   |   X   | Pings location and prints result to console.      |
 |printersList  |  X   |   X   | Lists available printers.                         |
 |processId     |  X   |   X   | Prints PID to console, errors if no process found.|
+|shellEnvVar   |  X   |   X   | Adds environment variable to shell config.        |
 |speedTest     |  X   |   X   | Run speedtest.net from your terminal.             |
 |sshKeyClip    |  X   |   X   | Copies ssh public key to clipboard.               |
 |sshKeyView    |  X   |   X   | Prints public key to console.                     |

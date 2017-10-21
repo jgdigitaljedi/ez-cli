@@ -9,6 +9,7 @@ var linux = require('../modules/linux');
 var init = require('../modules/init');
 var installs = require('../modules/installs');
 var configEx = require('../modules/configExposed');
+var term = require('../modules/term');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -62,6 +63,12 @@ var argv = yargs.usage('$0 command')
   .command('processId', 'Gets PID(s) of process by name.', function() {
     return info.pidName();
   })
+  .command('shellEnvVar', 'Adds environment variable to shell.', function() {
+    return term.envVar();
+  })
+  // .command('shellSource', 'Re-sources shell (updates any env or config changes).', function() {
+  //   return term.resource();
+  // })
   .command('speedTest', 'Run a speedtest from the console.', function() {
     return speed.test();
   })
