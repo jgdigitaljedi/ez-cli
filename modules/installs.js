@@ -20,21 +20,21 @@ function checkForInstall(which) {
 }
 
 module.exports = {
-  // installNvm: function() { // you'd have to have node to use this tool in the first place, why did I write this?
-  //   checkForInstall('curl').then(function(result) {
-  //     if (result) {
-  //       exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
-  //     } else {
-  //       checkForInstall('wget').then(function(res) {
-  //         if (res) {
-  //           exec('wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
-  //         } else {
-  //           log.err('You have to have either curl or wget installed to do this!');
-  //         }
-  //       });
-  //     }
-  //   });
-  // },
+  installNvm: function() { // you'd have to have node to use this tool in the first place, why did I write this?
+    checkForInstall('curl').then(function(result) {
+      if (result) {
+        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
+      } else {
+        checkForInstall('wget').then(function(res) {
+          if (res) {
+            exec('wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
+          } else {
+            log.err('You have to have either curl or wget installed to do this!');
+          }
+        });
+      }
+    });
+  },
   installCurl: function() {
     checkForInstall('curl').then(function(result) {
       if (result) {
@@ -52,8 +52,7 @@ module.exports = {
       } else {
         if (config.linux.packageManager === 'apt') {
           inquire.prompt([util.sudoPrompt]).then(function(answer) {
-            var lCase = answer.sudo.toLowerCase();
-            if (lCase === 'y' || lCase == 'yes') {
+            if (helpers.yesNo(answer.sudo)) {
               exec('sudo apt-get install curl').stdout.on('data', function(data) {
                 log.general(helpers.removeLineBreak(data));
               }).on('exit', function() {
@@ -78,7 +77,7 @@ module.exports = {
         default: false
       }
     ]).then(function(answer) {
-      if (answer.omz) {
+      if (helpers.yesNo(answer.omz)) {
         exec('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"');
         if (config.teachMode) {
           log.teach('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"');
@@ -87,6 +86,25 @@ module.exports = {
     });
   },
   installZsh: function() {
-    
+    inquire.prompt([util.sudoPrompt])
+      .then(function(answer) {
+        if (helpers.yesNo(answer.sudo)) {
+          if (config.platform === 'darwin') {
+
+          } else if (config.linux.packageManager === 'apt') {
+            exec('sudo apt-get install zsh').stdout.on('data', function(data) {
+              log.general(helpers.removeLineBreak(data));
+            }).on('exit', function() {
+              if (config.teachMode) {
+                log.teach('sudo apt-get install zsh');
+              }
+            });
+          } else if (config.linux.packageManager === 'yum') {
+
+          }
+        } else {
+          log.general('User aborted!');
+        }
+      });
   }
 };
