@@ -54,6 +54,7 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |folderCopy    |  X   |   X   | Copies folder and contents to destination.        |
 |init          |  X   |   X   | Build OS specific config. RUN THIS FIRST!         |
 |installCurl   |  X   |   X   | Installs curl command line utility.               |
+|installOhMyZsh|  X   |       | Installs Oh-My-Zsh.                               |
 |linuxUpdates  |  X   |       | Fetches/refreshes Linux system updates.           |
 |nodeKill      |  X   |   X   | Kills Node process if one running.                |
 |nodeVersion   |  X   |   X   | Print NodeJS version to console.                  |

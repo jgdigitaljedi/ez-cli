@@ -68,5 +68,25 @@ module.exports = {
         }
       }
     });
+  },
+  installOhMyZsh: function() {
+    inquire.prompt([
+      {
+        type: 'confirm',
+        name: 'omz',
+        message: 'You need to install zsh and set as default shell first. Proceed? (y/N)',
+        default: false
+      }
+    ]).then(function(answer) {
+      if (answer.omz) {
+        exec('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"');
+        if (config.teachMode) {
+          log.teach('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"');
+        }
+      }
+    });
+  },
+  installZsh: function() {
+    
   }
 };

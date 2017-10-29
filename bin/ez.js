@@ -39,6 +39,9 @@ var argv = yargs.usage('$0 command')
   .command('installCurl', 'Installs curl command line utility', function() {
     return installs.installCurl();
   })
+  .command('installOhMyZsh', 'Installs Oh-My-Zsh', function() {
+    return installs.installOhMyZsh();
+  })
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
     linux.getUpdates();
   })
