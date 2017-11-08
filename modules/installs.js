@@ -23,11 +23,11 @@ module.exports = {
   installNvm: function() { // you'd have to have node to use this tool in the first place, why did I write this?
     checkForInstall('curl').then(function(result) {
       if (result) {
-        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
+        exec('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', helpers.puts);
       } else {
         checkForInstall('wget').then(function(res) {
           if (res) {
-            exec('wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', puts);
+            exec('wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash', helpers.puts);
           } else {
             log.err('You have to have either curl or wget installed to do this!');
           }
@@ -107,4 +107,5 @@ module.exports = {
         }
       });
   }
+  // add one for 'theFuck'
 };

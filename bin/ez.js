@@ -10,6 +10,7 @@ var init = require('../modules/init');
 var installs = require('../modules/installs');
 var configEx = require('../modules/configExposed');
 var term = require('../modules/term');
+var git = require('../modules/git');
 
 var argv = yargs.usage('$0 command')
   .command('calendar', 'Print calendar to terminal', function() {
@@ -32,6 +33,9 @@ var argv = yargs.usage('$0 command')
   })
   .command('folderCopy', 'Copy a folder somewhere.', function() {
     return copyMod.copyFolder();
+  })
+  .command('gitStatus', 'Get current git status of directory if tracked.', function() {
+    return git.gitStatus();
   })
   .command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
     init.writeConfig();
