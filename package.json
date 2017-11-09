@@ -20,6 +20,7 @@
   "license": "MIT License",
   "dependencies": {
     "chalk": "^2.1.0",
+    "cli-interact": "^0.1.9",
     "inquirer": "^3.3.0",
     "log-symbols": "^2.1.0",
     "log-update": "^2.1.0",

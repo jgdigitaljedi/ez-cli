@@ -34,8 +34,8 @@ var argv = yargs.usage('$0 command')
   .command('folderCopy', 'Copy a folder somewhere.', function() {
     return copyMod.copyFolder();
   })
-  .command('gitStatus', 'Get current git status of directory if tracked.', function() {
-    return git.gitStatus();
+  .command('gitAll', 'Runs git status, add, commit (you type message), and pushes to current branch.', function() {
+    return git.gitAll();
   })
   .command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
     init.writeConfig();
