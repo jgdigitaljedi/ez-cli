@@ -18,7 +18,7 @@ module.exports = {
       configMethods.writeConfig(config, message);
     });
   },
-  toggleTeachMode: function () {
+  toggleTeachMode: function() {
     config.teachMode = !config.teachMode;
     var message = 'Teach mode is now ' + (config.teachMode ? 'on' : 'off');
     configMethods.writeConfig(config, message);

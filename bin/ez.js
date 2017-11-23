@@ -46,6 +46,9 @@ var argv = yargs.usage('$0 command')
   .command('installOhMyZsh', 'Installs Oh-My-Zsh', function() {
     return installs.installOhMyZsh();
   })
+  .command('installthefuck', 'Installs Oh-My-Zsh', function() {
+    return installs.installThefuck();
+  })
   .command('linuxUpdates', 'Debian based Linux - get updates.', function() {
     linux.getUpdates();
   })

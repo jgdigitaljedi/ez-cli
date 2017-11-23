@@ -106,6 +106,37 @@ module.exports = {
           log.general('User aborted!');
         }
       });
+  },
+  installThefuck: function() {
+    if (config.platform === 'darwin') {
+      exec('brew install thefuck').stdout.on('data', function(data) {
+        log.general(helpers.removeLineBreak(data));
+      }).on('exit', function() {
+        log.success('theFuck successfully installed!');
+        if (config.teachMode) {
+          log.teach('brew install theFuck');
+        }
+      });
+    } else if (config.linux.packageManager === 'apt') {
+      inquire.prompt([util.sudoPrompt]).then(function(answer) {
+        if (helpers.yesNo(answer.sudo)) {
+          exec('sudo apt install python3-dev python3-pip').on.stdout('data', function(data) {
+            log.general(helpers.removeLineBreak(data));
+          }).on('exit', function() {
+            exec('sudo pip3 install thefuck').stdout.on(function(dat) {
+              log.general(helpers.removeLineBreak(dat));
+            }).on('exit', function() {
+              log.success('Congrats! theFuck and it\'s dependencies have been installed!');
+              if (config.teachMode) {
+                log.teach('sudo apt install python3-dev python3-pip');
+                log.teach('sudo pip3 install thefuck');
+              }
+            });
+          });
+        }
+      });
+    } else {
+
+    }
   }
-  // add one for 'theFuck'
 };
