@@ -3,7 +3,7 @@
 var log = require('../lib/log');
 
 module.exports = {
-	makeASandwich: function() {
+	makeASandwich: function(test) {
 		log.err('MAKE IT YOURSELF!!');
 	},
 	sudoMakeMeASandwich: function() {

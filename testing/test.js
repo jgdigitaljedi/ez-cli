@@ -16,3 +16,4 @@ function importTest(name, path) {
 }
 
 importTest('helpers lib methods', './subs/lib/helpers');
+importTest('fun modules methods', './subs/modules/fun');
