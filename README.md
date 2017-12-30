@@ -39,7 +39,7 @@ ez <command>
 
 NOTE: I'm abandoning the Windows specific commands for now as I have no access to a Windows machine anywhere. I started on some Windows commands, but they are untested. In theory I think a lot of this will run in Git-Bash, but I don't know. I am not even going to attempt Windows specific commands for now until maybe I pickup a cheap, old box and toss a Windows installation on it. Use at your own risk for Windows. (or put in a pull request if you have access and want to write and test the commands);
 
-Also, I am trying to keep this ES5 so it runs on older versions of Node without problems.
+Also, I am trying to keep this ES5 so it runs on older versions of Node without problems. That also means no async-await or newer Node API usage either :(
 
 Also, for Linux, the package manager specific commands are untested except for apt. That said, I'm pretty sure the yum commands I've written will work fine, and I haven't circled back to add pacman and yast.
 
