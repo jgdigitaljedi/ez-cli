@@ -4,7 +4,9 @@ JUST STARTED THIS IN WHAT LITTLE SPARE TIME I HAVE. There's not much here yet, b
 
 I AM NOT RESPOSIBLE FOR ANY HARDWARE FAILURES, DELETED CONTENT, CAREER ENDING EMAILS SENT TO YOUR BOSS, WIPED HARD DRIVES, OR ANYTHING ELSE BAD THAT HAPPENS TO YOU, YOUR MACHINE, YOUR NETWORK MACHINES, ETC. USE THIS AT YOUR OWN RISK!! YOU ASSUME ANY RESPOSIBILITY FOR ANYTHING THAT MIGHT HAPPEN AS A RESULT OF USING THIS TOOL! YOU HAVE BEEN WARNED.
 
-That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. The Windows commands have not been tested as I do not have access to a Windows machine. I'm kind of targeting the low hanging fruit at the moment and testing the water, but I plan on really getting deeper into useful commands after I feel like I've figured out the best way to do things.
+That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. I'm kind of targeting the low hanging fruit at the moment and testing the water, but I plan on really getting deeper into useful commands after I feel like I've figured out the best way to do things.
+
+Also, feel free to put in a PR if you want to contribute!
 
 ### What this does
 The goal of this is to provide a simple way to execute commands in an intuative way. If you're like me, you often forget commands or the options that need to be passed to them to get the desired result. This tool aims to make all of that easier.
@@ -34,6 +36,17 @@ ez init
 ```
 ez <command>
 ```
+
+### Testing
+uses:
+- Mocha
+- Chai
+- Sinon
+```
+npm test
+```
+
+I just started writing tests so coverage is mostly lacking at the moment.
 
 ### Commands and Compatibility
 
