@@ -1,15 +1,15 @@
 /*jslint node: true */
 'use strict';
 
-var os = require('os');
+var chalk = require('chalk');
 var config = require('../system.config');
 var configMethods = require('../lib/configMethods');
 var exec = require('child_process').exec;
-var inquire = require('inquirer');
-var chalk = require('chalk');
-var log = require('../lib/log');
 var files = require('../lib/files');
 var helpers = require('../lib/helpers');
+var inquire = require('inquirer');
+var log = require('../lib/log');
+var os = require('os');
 
 function deb(version) {
 	return version.indexOf('ubuntu') >= 0 || version.indexOf('debian') >= 0;

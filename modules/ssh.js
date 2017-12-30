@@ -1,11 +1,11 @@
 /*jslint node: true */
 'use strict';
 
-var shell = require('shelljs');
-var inquire = require('inquirer');
 var cb = require('../lib/clipboard');
 var config = require('../system.config');
+var inquire = require('inquirer');
 var log = require('../lib/log');
+var shell = require('shelljs');
 
 module.exports = {
 	copySshToClipboad: function() {

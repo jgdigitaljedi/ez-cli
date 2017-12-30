@@ -2,11 +2,11 @@
 'use strict';
 
 var config = '../system.config.json';
-var util = require('../lib/util');
 var exec = require('child_process').exec;
-var log = require('../lib/log');
-var inquire = require('inquirer');
 var helpers = require('../lib/helpers');
+var inquire = require('inquirer');
+var log = require('../lib/log');
+var util = require('../lib/util');
 
 function checkForInstall(which) {
 	return new Promise(function(resolve, reject) {

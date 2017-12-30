@@ -4,15 +4,15 @@
 // I just made their CLI tool into a module accessible by my CLI tool.
 
 'use strict';
-var url = require('url');
+var chalk = require('chalk');
+var logSymbols = require('log-symbols');
+var logUpdate = require('log-update');
 var meow = require('meow');
+var Ora = require('ora');
+var roundTo = require('round-to');
 var speedtest = require('speedtest-net');
 var updateNotifier = require('update-notifier');
-var roundTo = require('round-to');
-var chalk = require('chalk');
-var logUpdate = require('log-update');
-var logSymbols = require('log-symbols');
-var Ora = require('ora');
+var url = require('url');
 
 module.exports = {
 	test: function() {

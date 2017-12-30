@@ -1,12 +1,12 @@
 /*jslint node: true */
 'use strict';
 
-var exec = require('child_process').exec;
-var inquire = require('inquirer');
 var config = require('../system.config');
+var exec = require('child_process').exec;
+var helpers = require('../lib/helpers');
+var inquire = require('inquirer');
 var log = require('../lib/log');
 var util = require('../lib/util');
-var helpers = require('../lib/helpers');
 
 function execCommand(command, event) {
 	return new Promise((resolve, reject) => {

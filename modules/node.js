@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
+var config = require('../system.config');
 var exec = require('child_process').exec;
 var log = require('../lib/log');
-var config = require('../system.config');
 
 module.exports = {
 	listGlobalNpm: function() {

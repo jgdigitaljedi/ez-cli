@@ -3,12 +3,12 @@
 
 var config = require('../system.config');
 var exec = require('child_process').exec;
+var fs = require('fs');
 var helpers = require('../lib/helpers');
+var inquire = require('inquirer');
 var log = require('../lib/log');
 var path = require('path');
-var fs = require('fs');
 var shell = path.join(path.dirname(fs.realpathSync(__filename)), '../shell');
-var inquire = require('inquirer');
 
 module.exports = {
 	resource: function() {
@@ -62,7 +62,7 @@ module.exports = {
 							cPath = config.shell.config;
 						}
 						log.general(
-							'Either restart your terminal or run "source ' + cPath + '". I can\' run that for you!'
+							'Either restart your terminal or run "source ' + cPath + '". I can\'t run that for you!'
 						);
 					}
 				});

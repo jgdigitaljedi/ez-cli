@@ -50,10 +50,11 @@ The idea behind the commands are to say WHAT, then the action. This way all task
 |calendar       |  X   |   X   | Prints calendar to console.                       |
 |configView     |  X   |   X   | Show EZ-CLI config                                |
 |configTeach    |  X   |   X   | Toggles teach mode.                               |
-|configZip      |  X   |   X   | Change zipcode in config.                         |
+|configZipcode  |  X   |   X   | Change zipcode in config.                         |
 |driveSpace     |  X   |   X   | Prints hard drive info to console.                |
 |fileCopy       |  X   |   X   | Copies file to destination.                       |
 |folderCopy     |  X   |   X   | Copies folder and contents to destination.        |
+|gitForget      |  X   |   X   | Clears git cache.
 |init           |  X   |   X   | Build OS specific config. RUN THIS FIRST!         |
 |installCurl    |  X   |   X   | Installs curl command line utility.               |
 |installOhMyZsh |  X   |       | Installs Oh-My-Zsh.                               |

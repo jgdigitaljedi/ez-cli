@@ -1,10 +1,10 @@
 /*jslint node: true */
 'use strict';
 
-var inquire = require('inquirer');
-var log = require('../lib/log');
 var exec = require('child_process').exec;
 var helpers = require('../lib/helpers');
+var inquire = require('inquirer');
+var log = require('../lib/log');
 var query = require('cli-interact').getYesNo;
 
 module.exports = {

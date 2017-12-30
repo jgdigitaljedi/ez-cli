@@ -50,9 +50,6 @@ module.exports = {
 			);
 		}
 	},
-	seeConfig: function() {
-		log.general('config', config);
-	},
 	ping: function() {
 		inquire
 			.prompt([

@@ -1,11 +1,11 @@
 /*jslint node: true */
 'use strict';
 
-var log = require('../lib/log');
-var util = require('../lib/util');
 var config = require('../system.config');
 var configMethods = require('../lib/configMethods');
 var inquire = require('inquirer');
+var log = require('../lib/log');
+var util = require('../lib/util');
 
 module.exports = {
 	changeZipcode: function() {
@@ -27,5 +27,9 @@ module.exports = {
 		config.teachMode = !config.teachMode;
 		var message = 'Teach mode is now ' + (config.teachMode ? 'on' : 'off');
 		configMethods.writeConfig(config, message);
+	},
+	viewConfig: function() {
+		var configStr = JSON.stringify(config, null, 4);
+		log.general(configStr);
 	}
 };

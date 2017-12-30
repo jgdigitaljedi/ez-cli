@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 /*jslint node: true */
+'use strict';
 var configEx = require('../modules/configExposed');
 var copyMod = require('../modules/copy');
 var fun = require('../modules/fun');
@@ -20,12 +21,12 @@ var argv = yargs
 		return info.calendar();
 	})
 	.command('configView', 'View EZ-CLI config.', function() {
-		return info.seeConfig();
+		return configEx.viewConfig();
 	})
 	.command('configTeach', 'Toggle teach mode.', function() {
 		return configEx.toggleTeachMode();
 	})
-	.command('configZip', 'Change zipcode in config.', function() {
+	.command('configZipcode', 'Change zipcode in config.', function() {
 		return configEx.changeZipcode();
 	})
 	.command('driveSpace', 'See how much hard drive space you have.', function() {
@@ -40,6 +41,13 @@ var argv = yargs
 	.command('gitAll', 'Runs git status, add, commit (you type message), and pushes to current branch.', function() {
 		return git.gitAll();
 	})
+	.command(
+		'gitForget',
+		'Clears git cache (stops tracking a previously tracked file if added to gitignore).',
+		function() {
+			return git.gitForget();
+		}
+	)
 	.command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
 		init.writeConfig();
 	})
@@ -49,7 +57,7 @@ var argv = yargs
 	.command('installOhMyZsh', 'Installs Oh-My-Zsh', function() {
 		return installs.installOhMyZsh();
 	})
-	.command('installthefuck', 'Installs Oh-My-Zsh', function() {
+	.command('installThefuck', 'Installs Oh-My-Zsh', function() {
 		return installs.installThefuck();
 	})
 	.command('linuxUpdates', 'Debian based Linux - get updates.', function() {

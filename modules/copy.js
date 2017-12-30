@@ -1,10 +1,10 @@
 /*jslint node: true */
 'use strict';
 
-var inquire = require('inquirer');
+var config = require('../system.config');
 var files = require('../lib/files');
 var finish = require('../lib/finalAnswer');
-var config = require('../system.config');
+var inquire = require('inquirer');
 
 module.exports = {
 	copyFolder: function() {
