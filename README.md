@@ -45,29 +45,30 @@ Also, for Linux, the package manager specific commands are untested except for a
 
 The idea behind the commands are to say WHAT, then the action. This way all tasks pertaining to ssh keys, file operations, etc will be grouped in the list since they will start with the WHAT.
 
-|Command       |Linux | MacOS | Description                                       |
-|--------------|------|-------|---------------------------------------------------|
-|calendar      |  X   |   X   | Prints calendar to console.                       |
-|configView    |  X   |   X   | Show EZ-CLI config                                |
-|configTeach   |  X   |   X   | Toggles teach mode.                               |
-|configZip     |  X   |   X   | Change zipcode in config.                         |
-|driveSpace    |  X   |   X   | Prints hard drive info to console.                |
-|fileCopy      |  X   |   X   | Copies file to destination.                       |
-|folderCopy    |  X   |   X   | Copies folder and contents to destination.        |
-|init          |  X   |   X   | Build OS specific config. RUN THIS FIRST!         |
-|installCurl   |  X   |   X   | Installs curl command line utility.               |
-|installOhMyZsh|  X   |       | Installs Oh-My-Zsh.                               |
-|linuxUpdates  |  X   |       | Fetches/refreshes Linux system updates.           |
-|nodeKill      |  X   |   X   | Kills Node process if one running.                |
-|nodeVersion   |  X   |   X   | Print NodeJS version to console.                  |
-|npmGlobalsList|  X   |   X   | Lists globally installed npm packages.            |
-|npmVersion    |  X   |   X   | Print npm version to console.                     |
-|ping          |  X   |   X   | Pings location and prints result to console.      |
-|printersList  |  X   |   X   | Lists available printers.                         |
-|processId     |  X   |   X   | Prints PID to console, errors if no process found.|
-|shellEnvVar   |  X   |   X   | Adds environment variable to shell config.        |
-|speedTest     |  X   |   X   | Run speedtest.net from your terminal.             |
-|sshKeyClip    |  X   |   X   | Copies ssh public key to clipboard.               |
-|sshKeyView    |  X   |   X   | Prints public key to console.                     |
-|whereAmI      |  X   |   X   | Prints full path to current directory.            |
+|Command        |Linux | MacOS | Description                                       |
+|---------------|------|-------|---------------------------------------------------|
+|calendar       |  X   |   X   | Prints calendar to console.                       |
+|configView     |  X   |   X   | Show EZ-CLI config                                |
+|configTeach    |  X   |   X   | Toggles teach mode.                               |
+|configZip      |  X   |   X   | Change zipcode in config.                         |
+|driveSpace     |  X   |   X   | Prints hard drive info to console.                |
+|fileCopy       |  X   |   X   | Copies file to destination.                       |
+|folderCopy     |  X   |   X   | Copies folder and contents to destination.        |
+|init           |  X   |   X   | Build OS specific config. RUN THIS FIRST!         |
+|installCurl    |  X   |   X   | Installs curl command line utility.               |
+|installOhMyZsh |  X   |       | Installs Oh-My-Zsh.                               |
+|linuxUpdates   |  X   |       | Fetches/refreshes Linux system updates.           |
+|makeMeASandwich|  X   |   X   | Hmm, I wonder if...                               |
+|nodeKill       |  X   |   X   | Kills Node process if one running.                |
+|nodeVersion    |  X   |   X   | Print NodeJS version to console.                  |
+|npmGlobalsList |  X   |   X   | Lists globally installed npm packages.            |
+|npmVersion     |  X   |   X   | Print npm version to console.                     |
+|ping           |  X   |   X   | Pings location and prints result to console.      |
+|printersList   |  X   |   X   | Lists available printers.                         |
+|processId      |  X   |   X   | Prints PID to console, errors if no process found.|
+|shellEnvVar    |  X   |   X   | Adds environment variable to shell config.        |
+|speedTest      |  X   |   X   | Run speedtest.net from your terminal.             |
+|sshKeyClip     |  X   |   X   | Copies ssh public key to clipboard.               |
+|sshKeyView     |  X   |   X   | Prints public key to console.                     |
+|whereAmI       |  X   |   X   | Prints full path to current directory.            |
 

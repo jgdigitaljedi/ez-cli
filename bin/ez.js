@@ -1,17 +1,18 @@
 #! /usr/bin/env node
 /*jslint node: true */
-var yargs = require('yargs');
+var configEx = require('../modules/configExposed');
 var copyMod = require('../modules/copy');
+var fun = require('../modules/fun');
+var git = require('../modules/git');
 var info = require('../modules/info');
-var sshMod = require('../modules/ssh');
-var nodejs = require('../modules/node');
-var speed = require('../modules/speedTest');
-var linux = require('../modules/linux');
 var init = require('../modules/init');
 var installs = require('../modules/installs');
-var configEx = require('../modules/configExposed');
+var linux = require('../modules/linux');
+var nodejs = require('../modules/node');
+var speed = require('../modules/speedTest');
+var sshMod = require('../modules/ssh');
 var term = require('../modules/term');
-var git = require('../modules/git');
+var yargs = require('yargs');
 
 var argv = yargs
 	.usage('$0 command')
@@ -54,6 +55,9 @@ var argv = yargs
 	.command('linuxUpdates', 'Debian based Linux - get updates.', function() {
 		linux.getUpdates();
 	})
+	.command('makeMeASandwich', 'Makes you a sandwich', function() {
+		fun.makeASandwich();
+	})
 	.command('nodeKill', 'Kills node process.', function() {
 		return nodejs.killNode();
 	})
@@ -89,6 +93,9 @@ var argv = yargs
 	})
 	.command('sshKeyView', 'Prints public ssh key to console.', function() {
 		return sshMod.viewSshKey();
+	})
+	.command('sudoMakeMeASandwich', 'Good job!', function() {
+		return fun.sudoMakeMeASandwich();
 	})
 	.command('whereAmI', 'Find path to current directory.', function() {
 		return info.whereAmI();
