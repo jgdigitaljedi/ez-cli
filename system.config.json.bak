@@ -1,13 +1,17 @@
 {
-    "platform": null,
-    "unix": null,
+    "platform": "linux",
+    "unix": true,
     "linux": {
-        "version": null,
-        "packageManager": null
+        "version": "ubuntu 16.04.3 lts",
+        "packageManager": "apt"
     },
-    "zipcode": null,
+    "zipcode": "78653",
     "teachMode": false,
     "windows": {
         "gitBash": false
+    },
+    "shell": {
+        "type": "zsh",
+        "config": "/home/joey/.zshrc"
     }
 }
