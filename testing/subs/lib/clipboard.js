@@ -6,10 +6,7 @@
 const common = require('../../common');
 
 const assert = common.assert;
-const chalk = common.chalk;
-const expect = common.expect;
 const clipboardLib = require('../../../lib/clipboard');
-const options = common.options;
 const sinon = common.sinon;
 
 describe('Clipboard setClipboard method', () => {

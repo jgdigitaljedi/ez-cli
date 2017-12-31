@@ -1,0 +1,3 @@
+Just a reminder to go back and revisit things as I notice them
+
+- rewrote configMethods writeConfig method to be a promise. Any instance of implementation should be refactored to use promise.

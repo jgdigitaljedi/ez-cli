@@ -6,12 +6,8 @@
 const common = require('../../common');
 
 const assert = common.assert;
-const chalk = common.chalk;
-const expect = common.expect;
 const configLib = require('../../../lib/configMethods');
 const config = require('../../../system.config');
-const options = common.options;
-const sinon = common.sinon;
 
 describe('ConfigMethods writeConfig method', () => {
 	it('writes the expected config and resolves the promise returning the config', () => {

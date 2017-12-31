@@ -6,7 +6,6 @@
 const common = require('../../common');
 
 const assert = common.assert;
-const expect = common.expect;
 const funModule = require('../../../modules/fun');
 const options = common.options;
 const sinon = common.sinon;
