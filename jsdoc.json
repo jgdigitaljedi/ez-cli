@@ -4,7 +4,7 @@
 	},
 	"sourceType": "module",
 	"source": {
-		"include": [ "bin", "lib", "modules" ],
+		"include": [ "bin/", "lib/", "modules/" ],
 		"includePattern": ".+\\.js(doc|x)?$",
 		"excludePattern": "(node_modules/|docs)"
 	},

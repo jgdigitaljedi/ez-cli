@@ -5,18 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "mocha testing/test.js",
-		"generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json"
+		"generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json --readme README.md"
 	},
 	"bin": {
 		"ez": "bin/ez.js"
 	},
-	"keywords": [
-		"bash",
-		"zsh",
-		"cli",
-		"clipboard",
-		"ssh"
-	],
+	"keywords": [ "bash", "zsh", "cli", "clipboard", "ssh" ],
 	"author": "Joey Gauthier <digitaljedi@outlook.com> (https://joeyg.me)",
 	"license": "MIT License",
 	"dependencies": {

@@ -10,6 +10,9 @@ var inquire = require('inquirer');
  * @module modules/copy
  */
 module.exports = {
+	/**
+	 * Prompts user for directory to copy and where to copy it then recursively copies directory
+	 */
 	copyFolder: function() {
 		var questions = [
 			{
@@ -39,6 +42,9 @@ module.exports = {
 			}
 		});
 	},
+	/**
+	 * Prompts user for file to copy and where to copy it then copies it
+	 */
 	copyFile: function() {
 		var questions = [
 			{

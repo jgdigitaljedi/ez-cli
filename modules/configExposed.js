@@ -11,13 +11,16 @@ var util = require('../lib/util');
  * @module modules/configExposed
  */
 module.exports = {
+	/**
+	 * Prompts user for zipcode to be inputted and changes saved zipcode in config
+	 */
 	changeZipcode: function() {
 		inquire
 			.prompt([
 				{
 					name: 'zip',
 					type: 'input',
-					message: 'Enter you zipcode.'
+					message: 'Enter your zipcode.'
 				}
 			])
 			.then(function(answer) {
@@ -26,11 +29,17 @@ module.exports = {
 				configMethods.writeConfig(config, message);
 			});
 	},
+	/**
+	 * Toggles teach mode in config
+	 */
 	toggleTeachMode: function() {
 		config.teachMode = !config.teachMode;
 		var message = 'Teach mode is now ' + (config.teachMode ? 'on' : 'off');
 		configMethods.writeConfig(config, message);
 	},
+	/**
+	 * Logs config to console
+	 */
 	viewConfig: function() {
 		var configStr = JSON.stringify(config, null, 4);
 		log.general(configStr);

@@ -15,6 +15,10 @@ var sshMod = require('../modules/ssh');
 var term = require('../modules/term');
 var yargs = require('yargs');
 
+/**
+ * Main logic for EZ-CLI to work from command line. Started with 'ez ' then takes arguments to determine action.
+ * @namespace ez
+ */
 var argv = yargs
 	.usage('$0 command')
 	.command('calendar', 'Print calendar to terminal', function() {

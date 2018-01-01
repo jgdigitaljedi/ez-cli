@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>modules/installs.js - Documentation</title>
+    <title>bin/ez.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">modules/installs.js</h1>
+    <h1 class="page-title">bin/ez.js</h1>
     
 
     
@@ -37,174 +37,122 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/*jslint node: true */
-/*jslint esnext: true */
+            <pre class="prettyprint source linenums"><code>#! /usr/bin/env node
+/*jslint node: true */
 'use strict';
+var configEx = require('../modules/configExposed');
+var copyMod = require('../modules/copy');
+var fun = require('../modules/fun');
+var git = require('../modules/git');
+var info = require('../modules/info');
+var init = require('../modules/init');
+var installs = require('../modules/installs');
+var linux = require('../modules/linux');
+var nodejs = require('../modules/node');
+var speed = require('../modules/speedTest');
+var sshMod = require('../modules/ssh');
+var term = require('../modules/term');
+var yargs = require('yargs');
 
-var config = '../system.config.json';
-var exec = require('child_process').exec;
-var helpers = require('../lib/helpers');
-var inquire = require('inquirer');
-var log = require('../lib/log');
-var util = require('../lib/util');
-
-function checkForInstall(which) {
-	return new Promise(function(resolve, reject) {
-		util[which]().then(function(err, stdout, stderr) {
-			if (!err &amp;&amp; stdout.indexOf('not found') === -1) {
-				resolve(true);
-			} else {
-				resolve(false);
-			}
-		});
-	});
-}
-
-/** Software install methods callable by passing arguments in command line
- * @module modules/installs
+/**
+ * Main logic for EZ-CLI to work from command line. Started with 'ez ' then takes arguments to determine action.
+ * @namespace ez
  */
-module.exports = {
-	installNvm: function() {
-		// you'd have to have node to use this tool in the first place, why did I write this?
-		checkForInstall('curl').then(function(result) {
-			if (result) {
-				exec(
-					'curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash',
-					helpers.puts
-				);
-			} else {
-				checkForInstall('wget').then(function(res) {
-					if (res) {
-						exec(
-							'wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash',
-							helpers.puts
-						);
-					} else {
-						log.err('You have to have either curl or wget installed to do this!');
-					}
-				});
-			}
-		});
-	},
-	installCurl: function() {
-		checkForInstall('curl').then(function(result) {
-			if (result) {
-				log.warn('You already have curl installed!');
-				return;
-			}
-			if (config.platform === 'darwin') {
-				exec('brew install curl').stdout
-					.on('data', function(data) {
-						log.general(helpers.removeLineBreak(data));
-					})
-					.on('exit', function() {
-						if (config.teachMode) {
-							log.teach('brew install curl');
-						}
-					});
-			} else {
-				if (config.linux.packageManager === 'apt') {
-					inquire.prompt([ util.sudoPrompt ]).then(function(answer) {
-						if (helpers.yesNo(answer.sudo)) {
-							exec('sudo apt-get install curl').stdout
-								.on('data', function(data) {
-									log.general(helpers.removeLineBreak(data));
-								})
-								.on('exit', function() {
-									if (config.teachMode) {
-										log.teach('sudo apt-get install curl');
-									}
-								});
-						} else {
-							log.warn('User aborted!');
-						}
-					});
-				}
-			}
-		});
-	},
-	installOhMyZsh: function() {
-		inquire
-			.prompt([
-				{
-					type: 'confirm',
-					name: 'omz',
-					message: 'You need to install zsh and set as default shell first. Proceed? (y/N)',
-					default: false
-				}
-			])
-			.then(function(answer) {
-				if (helpers.yesNo(answer.omz)) {
-					exec(
-						'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
-					);
-					if (config.teachMode) {
-						log.teach(
-							'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
-						);
-					}
-				}
-			});
-	},
-	installZsh: function() {
-		inquire.prompt([ util.sudoPrompt ]).then(function(answer) {
-			if (helpers.yesNo(answer.sudo)) {
-				if (config.platform === 'darwin') {
-				} else if (config.linux.packageManager === 'apt') {
-					exec('sudo apt-get install zsh').stdout
-						.on('data', function(data) {
-							log.general(helpers.removeLineBreak(data));
-						})
-						.on('exit', function() {
-							if (config.teachMode) {
-								log.teach('sudo apt-get install zsh');
-							}
-						});
-				} else if (config.linux.packageManager === 'yum') {
-				}
-			} else {
-				log.general('User aborted!');
-			}
-		});
-	},
-	installThefuck: function() {
-		if (config.platform === 'darwin') {
-			exec('brew install thefuck').stdout
-				.on('data', function(data) {
-					log.general(helpers.removeLineBreak(data));
-				})
-				.on('exit', function() {
-					log.success('theFuck successfully installed!');
-					if (config.teachMode) {
-						log.teach('brew install theFuck');
-					}
-				});
-		} else if (config.linux.packageManager === 'apt') {
-			inquire.prompt([ util.sudoPrompt ]).then(function(answer) {
-				if (helpers.yesNo(answer.sudo)) {
-					exec('sudo apt install python3-dev python3-pip').on
-						.stdout('data', function(data) {
-							log.general(helpers.removeLineBreak(data));
-						})
-						.on('exit', function() {
-							exec('sudo pip3 install thefuck').stdout
-								.on(function(dat) {
-									log.general(helpers.removeLineBreak(dat));
-								})
-								.on('exit', function() {
-									log.success("Congrats! theFuck and it's dependencies have been installed!");
-									if (config.teachMode) {
-										log.teach('sudo apt install python3-dev python3-pip');
-										log.teach('sudo pip3 install thefuck');
-									}
-								});
-						});
-				}
-			});
-		} else {
+var argv = yargs
+	.usage('$0 command')
+	.command('calendar', 'Print calendar to terminal', function() {
+		return info.calendar();
+	})
+	.command('configView', 'View EZ-CLI config.', function() {
+		return configEx.viewConfig();
+	})
+	.command('configTeach', 'Toggle teach mode.', function() {
+		return configEx.toggleTeachMode();
+	})
+	.command('configZipcode', 'Change zipcode in config.', function() {
+		return configEx.changeZipcode();
+	})
+	.command('driveSpace', 'See how much hard drive space you have.', function() {
+		return info.hardDriveSpace();
+	})
+	.command('fileCopy', 'Copy a file somewhere.', function() {
+		return copyMod.copyFile();
+	})
+	.command('folderCopy', 'Copy a folder somewhere.', function() {
+		return copyMod.copyFolder();
+	})
+	.command('gitAll', 'Runs git status, add, commit (you type message), and pushes to current branch.', function() {
+		return git.gitAll();
+	})
+	.command(
+		'gitForget',
+		'Clears git cache (stops tracking a previously tracked file if added to gitignore).',
+		function() {
+			return git.gitForget();
 		}
-	}
-};
+	)
+	.command('init', 'Gathers system info for EZ-CLI to work correctly.', function() {
+		init.writeConfig();
+	})
+	.command('installCurl', 'Installs curl command line utility', function() {
+		return installs.installCurl();
+	})
+	.command('installOhMyZsh', 'Installs Oh-My-Zsh', function() {
+		return installs.installOhMyZsh();
+	})
+	.command('installThefuck', 'Installs Oh-My-Zsh', function() {
+		return installs.installThefuck();
+	})
+	.command('linuxUpdates', 'Debian based Linux - get updates.', function() {
+		linux.getUpdates();
+	})
+	.command('makeMeASandwich', 'Makes you a sandwich', function() {
+		fun.makeASandwich();
+	})
+	.command('nodeKill', 'Kills node process.', function() {
+		return nodejs.killNode();
+	})
+	.command('nodeVersion', 'Shows NodeJS version.', function() {
+		return nodejs.nodeVersion();
+	})
+	.command('npmGlobalsList', 'List globally installed npm packages.', function() {
+		return nodejs.listGlobalNpm();
+	})
+	.command('npmVersion', 'Shows npm version.', function() {
+		return nodejs.npmVersion();
+	})
+	.command('ping', 'Pings an IP address or URL.', function() {
+		return info.ping();
+	})
+	.command('printersList', 'Lists available printers.', function() {
+		return info.listPrinters();
+	})
+	.command('processId', 'Gets PID(s) of process by name.', function() {
+		return info.pidName();
+	})
+	.command('shellEnvVar', 'Adds environment variable to shell.', function() {
+		return term.envVar();
+	})
+	// .command('shellSource', 'Re-sources shell (updates any env or config changes).', function() {
+	//   return term.resource();
+	// })
+	.command('speedTest', 'Run a speedtest from the console.', function() {
+		return speed.test();
+	})
+	.command('sshKeyClip', 'Copy ssh key to clipboard', function() {
+		sshMod.copySshToClipboad();
+	})
+	.command('sshKeyView', 'Prints public ssh key to console.', function() {
+		return sshMod.viewSshKey();
+	})
+	.command('sudoMakeMeASandwich', 'Good job!', function() {
+		return fun.sudoMakeMeASandwich();
+	})
+	.command('whereAmI', 'Find path to current directory.', function() {
+		return info.whereAmI();
+	})
+	.help('h')
+	.alias('h', 'help').argv;
 </code></pre>
         </article>
     </section>

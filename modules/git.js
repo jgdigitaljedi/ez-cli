@@ -1,4 +1,5 @@
 /*jslint node: true */
+/*jslint esnext: true */
 'use strict';
 
 var exec = require('child_process').exec;
@@ -11,12 +12,21 @@ var query = require('cli-interact').getYesNo;
  * @module modules/git
  */
 module.exports = {
+	/**
+	 * Logs git status of current directory
+	 */
 	gitStatus: function() {
 		exec('git status', helpers.puts);
 	},
+	/**
+	 * Same as running 'git add -A'
+	 */
 	gitAdd: function() {
 		exec('git add -A', helpers.puts);
 	},
+	/**
+	 * Same as running 'git commit -m' and prompts user for message
+	 */
 	gitCommit: function() {
 		return new Promise(function(resolve, reject) {
 			inquire
@@ -33,6 +43,9 @@ module.exports = {
 				});
 		});
 	},
+	/**
+	 * Same as running 'git push origin' and branch
+	 */
 	gitPush: function(branch) {
 		exec('git push origin ' + branch);
 	},

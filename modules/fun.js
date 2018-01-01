@@ -6,7 +6,10 @@ var log = require('../lib/log');
  * @module modules/fun
  */
 module.exports = {
-	makeASandwich: function(test) {
+	/**
+	 * Makes a sandwich...or does it?
+	 */
+	makeASandwich: function() {
 		log.err('MAKE IT YOURSELF!!');
 	},
 	sudoMakeMeASandwich: function() {
