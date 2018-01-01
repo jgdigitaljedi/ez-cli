@@ -4,14 +4,12 @@ JUST STARTED THIS IN WHAT LITTLE SPARE TIME I HAVE. There's not much here yet, b
 
 I AM NOT RESPOSIBLE FOR ANY HARDWARE FAILURES, DELETED CONTENT, CAREER ENDING EMAILS SENT TO YOUR BOSS, WIPED HARD DRIVES, OR ANYTHING ELSE BAD THAT HAPPENS TO YOU, YOUR MACHINE, YOUR NETWORK MACHINES, ETC. USE THIS AT YOUR OWN RISK!! YOU ASSUME ANY RESPOSIBILITY FOR ANYTHING THAT MIGHT HAPPEN AS A RESULT OF USING THIS TOOL! YOU HAVE BEEN WARNED.
 
-That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I also have a Mac at work which I will also be testing this on. I'm kind of targeting the low hanging fruit at the moment and testing the water, but I plan on really getting deeper into useful commands after I feel like I've figured out the best way to do things.
+That said, I have been testing this on my personal laptop running Ubuntu and everything works for me. I'm starting with the easy stuff to test the waters before I dig into deeper functionality.
 
 Also, feel free to put in a PR if you want to contribute!
 
 ### What this does
-The goal of this is to provide a simple way to execute commands in an intuative way. If you're like me, you often forget commands or the options that need to be passed to them to get the desired result. This tool aims to make all of that easier.
-
-The OS platform is detected, the appropriate prompts are provided to gather info about what you are trying to do, and if the command provides info it is run immediately, but if it performs an action you are prompted to confirm before execution.
+The goal of this is to provide a simple way to execute commands in an intuative way. If you're like me, you often forget commands or the options that need to be passed to them to get the desired result. This tool aims to make all of that easier while adding some other interesting functionality to the terminal.
 
 ### Teach Mode
 When you run:
@@ -27,7 +25,7 @@ I don't plan on publishing this to npm until I have a significant amount of func
 npm i
 npm link --scope=<your_username>
 ```
-Then, for the sake of building your personal config file to handle differences in operating systems, run:
+IMPORTANT: Then, for the sake of building your personal config file to handle differences in operating systems, run:
 ```
 ez init
 ```
@@ -48,11 +46,17 @@ npm test
 
 I just started writing tests so coverage is mostly lacking at the moment.
 
+### Documentation generation
+```
+npm run generate-docs
+```
+Doc blocks needed in jsdoc format for this to work.
+
 ### Commands and Compatibility
 
-NOTE: I'm abandoning the Windows specific commands for now as I have no access to a Windows machine anywhere. I started on some Windows commands, but they are untested. In theory I think a lot of this will run in Git-Bash, but I don't know. I am not even going to attempt Windows specific commands for now until maybe I pickup a cheap, old box and toss a Windows installation on it. Use at your own risk for Windows. (or put in a pull request if you have access and want to write and test the commands);
+NOTE: I've temporarliy abandonded Windows compatibility as I don't have access to Windows to test. My main focus is Linux (which should mostly work on Mac) since Linux is my daily driver.
 
-Also, I am trying to keep this ES5 so it runs on older versions of Node without problems. That also means no async-await or newer Node API usage either :(
+Also, to keep this working on slightly older Node versions I'm not using new Node API methods.
 
 Also, for Linux, the package manager specific commands are untested except for apt. That said, I'm pretty sure the yum commands I've written will work fine, and I haven't circled back to add pacman and yast.
 
