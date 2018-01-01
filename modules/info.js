@@ -8,6 +8,9 @@ var config = require('../system.config');
 var log = require('../lib/log');
 var util = require('../lib/util');
 
+/** Informational methods callable by passing arguments in command line
+ * @module modules/info
+ */
 module.exports = {
 	whereAmI: function() {
 		files.getFullPath(true);

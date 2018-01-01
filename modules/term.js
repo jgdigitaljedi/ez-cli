@@ -10,6 +10,9 @@ var log = require('../lib/log');
 var path = require('path');
 var shell = path.join(path.dirname(fs.realpathSync(__filename)), '../shell');
 
+/** Terminal related methods callable by passing arguments in command line
+ * @module modules/term
+ */
 module.exports = {
 	resource: function() {
 		exec('sh ' + shell + '/source.sh' + ' ' + config.shell.config, function(err, stdout, stderr) {

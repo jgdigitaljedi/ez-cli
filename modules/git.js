@@ -7,6 +7,9 @@ var inquire = require('inquirer');
 var log = require('../lib/log');
 var query = require('cli-interact').getYesNo;
 
+/** Git specific methods callable by passing arguments in command line
+ * @module modules/git
+ */
 module.exports = {
 	gitStatus: function() {
 		exec('git status', helpers.puts);

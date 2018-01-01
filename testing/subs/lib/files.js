@@ -10,4 +10,5 @@ const chalk = common.chalk;
 const expect = common.expect;
 const filesLib = require('../../../lib/files');
 const options = common.options;
+const path = require('path');
 const sinon = common.sinon;

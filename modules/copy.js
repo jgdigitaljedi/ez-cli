@@ -6,6 +6,9 @@ var files = require('../lib/files');
 var finish = require('../lib/finalAnswer');
 var inquire = require('inquirer');
 
+/** File and directory copyinging methods callable by passing arguments in command line
+ * @module modules/copy
+ */
 module.exports = {
 	copyFolder: function() {
 		var questions = [

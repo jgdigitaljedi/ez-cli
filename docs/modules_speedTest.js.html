@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>modules/speedTest.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib_clipboard.html">lib/clipboard</a><ul class='methods'><li data-type='method'><a href="module-lib_clipboard.html#.setClipboard">setClipboard</a></li></ul></li><li><a href="module-lib_configMethods.html">lib/configMethods</a><ul class='methods'><li data-type='method'><a href="module-lib_configMethods.html#.writeConfig">writeConfig</a></li></ul></li><li><a href="module-lib_files.html">lib/files</a><ul class='methods'><li data-type='method'><a href="module-lib_files.html#.directoryExists">directoryExists</a></li><li data-type='method'><a href="module-lib_files.html#.fileExists">fileExists</a></li><li data-type='method'><a href="module-lib_files.html#.getCurrentDirectoryBase">getCurrentDirectoryBase</a></li><li data-type='method'><a href="module-lib_files.html#.getFullPath">getFullPath</a></li></ul></li><li><a href="module-lib_finalAnswer.html">lib/finalAnswer</a><ul class='methods'><li data-type='method'><a href="module-lib_finalAnswer.html#.yesNoExec">yesNoExec</a></li></ul></li><li><a href="module-lib_helpers.html">lib/helpers</a><ul class='methods'><li data-type='method'><a href="module-lib_helpers.html#.homeShort">homeShort</a></li><li data-type='method'><a href="module-lib_helpers.html#.puts">puts</a></li><li data-type='method'><a href="module-lib_helpers.html#.removeLineBreak">removeLineBreak</a></li><li data-type='method'><a href="module-lib_helpers.html#.yesNo">yesNo</a></li></ul></li><li><a href="module-lib_log.html">lib/log</a></li><li><a href="module-lib_util.html">lib/util</a></li><li><a href="module-modules_configExposed.html">modules/configExposed</a></li><li><a href="module-modules_copy.html">modules/copy</a></li><li><a href="module-modules_fun.html">modules/fun</a></li><li><a href="module-modules_git.html">modules/git</a></li><li><a href="module-modules_info.html">modules/info</a></li><li><a href="module-modules_init.html">modules/init</a></li><li><a href="module-modules_installs.html">modules/installs</a></li><li><a href="module-modules_linux.html">modules/linux</a></li><li><a href="module-modules_node.html">modules/node</a></li><li><a href="module-modules_speedTest.html">modules/speedTest</a></li><li><a href="module-modules_ssh.html">modules/ssh</a></li><li><a href="module-modules_term.html">modules/term</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">modules/speedTest.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*jslint node: true */
+// credit to sindresorhus on github
+// https://github.com/sindresorhus/speed-test
+// I just made their CLI tool into a module accessible by my CLI tool.
+
+'use strict';
+var chalk = require('chalk');
+var logSymbols = require('log-symbols');
+var logUpdate = require('log-update');
+var meow = require('meow');
+var Ora = require('ora');
+var roundTo = require('round-to');
+var speedtest = require('speedtest-net');
+var updateNotifier = require('update-notifier');
+var url = require('url');
+
+/** Module for running SpeedTest
+ * @module modules/speedTest
+ */
+module.exports = {
+	test: function() {
+		var cli = meow(
+			[
+				'Usage',
+				'  $ speed-test',
+				'',
+				'Options',
+				'  -j, --json     Output the result as JSON',
+				'  -b, --bytes    Output the result in megabytes per second (MBps)',
+				'  -v, --verbose  Output more detailed information'
+			],
+			{
+				alias: {
+					j: 'json',
+					b: 'bytes',
+					v: 'verbose',
+					h: 'help'
+				}
+			}
+		);
+
+		updateNotifier({ pkg: cli.pkg }).notify();
+
+		var stats = {
+			ping: '',
+			download: '',
+			upload: ''
+		};
+
+		var state = 'ping';
+		var spinner = new Ora();
+		var unit = cli.flags.bytes ? 'MBps' : 'Mbps';
+		var multiplier = cli.flags.bytes ? 1 / 8 : 1;
+
+		function getSpinner(x) {
+			return state === x ? chalk.gray.dim(spinner.frame()) : '  ';
+		}
+
+		function render() {
+			if (cli.flags.json) {
+				console.log(JSON.stringify(stats));
+				return;
+			}
+
+			var output = [
+				'',
+				'      Ping ' + getSpinner('ping') + stats.ping,
+				'  Download ' + getSpinner('download') + stats.download,
+				'    Upload ' + getSpinner('upload') + stats.upload
+			];
+
+			if (cli.flags.verbose) {
+				output = output.concat([
+					'',
+					'    Server   ' + (stats.data === undefined ? '' : chalk.cyan(stats.data.server.host)),
+					'  Location   ' +
+						(stats.data === undefined
+							? ''
+							: chalk.cyan(
+									stats.data.server.location + chalk.dim(' (' + stats.data.server.country + ')')
+								)),
+					'  Distance   ' +
+						(stats.data === undefined
+							? ''
+							: chalk.cyan(roundTo(stats.data.server.distance, 1) + chalk.dim(' km')))
+				]);
+			}
+
+			logUpdate(output.join('\n'));
+		}
+
+		function setState(s) {
+			state = s;
+
+			if (s &amp;&amp; s.length > 0) {
+				stats[s] = chalk.yellow('0 ' + chalk.dim(unit));
+			}
+		}
+
+		function map(server) {
+			server.host = url.parse(server.url).host;
+			server.location = server.name;
+			server.distance = server.dist;
+
+			return server;
+		}
+
+		var st = speedtest({ maxTime: 20000 });
+
+		if (!cli.flags.json) {
+			setInterval(render, 50);
+		}
+
+		st.once('testserver', function(server) {
+			if (cli.flags.verbose) {
+				stats.data = {
+					server: map(server)
+				};
+			}
+
+			setState('download');
+			var ping = Math.round(server.bestPing);
+			stats.ping = cli.flags.json ? ping : chalk.cyan(ping + chalk.dim(' ms'));
+		});
+
+		st.on('downloadspeedprogress', function(speed) {
+			if (state === 'download' &amp;&amp; cli.flags.json !== true) {
+				speed *= multiplier;
+				var download = roundTo(speed, speed >= 10 ? 0 : 1);
+				stats.download = chalk.yellow(download + ' ' + chalk.dim(unit));
+			}
+		});
+
+		st.on('uploadspeedprogress', function(speed) {
+			if (state === 'upload' &amp;&amp; cli.flags.json !== true) {
+				speed *= multiplier;
+				var upload = roundTo(speed, speed >= 10 ? 0 : 1);
+				stats.upload = chalk.yellow(upload + ' ' + chalk.dim(unit));
+			}
+		});
+
+		st.once('downloadspeed', function(speed) {
+			setState('upload');
+			speed *= multiplier;
+			var download = roundTo(speed, speed >= 10 &amp;&amp; !cli.flags.json ? 0 : 1);
+			stats.download = cli.flags.json ? download : chalk.cyan(download + ' ' + chalk.dim(unit));
+		});
+
+		st.once('uploadspeed', function(speed) {
+			setState('');
+			speed *= multiplier;
+			var upload = roundTo(speed, speed >= 10 &amp;&amp; !cli.flags.json ? 0 : 1);
+			stats.upload = cli.flags.json ? upload : chalk.cyan(upload + ' ' + chalk.dim(unit));
+		});
+
+		st.on('data', function(data) {
+			if (cli.flags.verbose) {
+				stats.data = data;
+			}
+
+			render();
+		});
+
+		st.on('done', function() {
+			console.log();
+			process.exit();
+		});
+
+		st.on('error', function(err) {
+			if (err.code === 'ENOTFOUND') {
+				console.error(logSymbols.error, 'Please check your internet connection');
+			} else {
+				console.error(err);
+			}
+
+			process.exit(1);
+		});
+	}
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

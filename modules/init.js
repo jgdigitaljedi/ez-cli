@@ -103,6 +103,9 @@ function linuxCheck(plat) {
 	});
 }
 
+/** Main initialization module that gathers information and writes configuration
+ * @module modules/init
+ */
 module.exports = {
 	writeConfig: function() {
 		// platform

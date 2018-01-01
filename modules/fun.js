@@ -2,6 +2,9 @@
 'use strict';
 var log = require('../lib/log');
 
+/** Just some extra fun methods callable by passing arguments in command line
+ * @module modules/fun
+ */
 module.exports = {
 	makeASandwich: function(test) {
 		log.err('MAKE IT YOURSELF!!');

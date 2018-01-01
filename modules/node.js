@@ -5,6 +5,9 @@ var config = require('../system.config');
 var exec = require('child_process').exec;
 var log = require('../lib/log');
 
+/** Node and npm related methods callable by passing arguments in command line
+ * @module modules/node
+ */
 module.exports = {
 	listGlobalNpm: function() {
 		exec('npm list -g', function(err, stdout, stderr) {

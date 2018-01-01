@@ -7,6 +7,9 @@ var inquire = require('inquirer');
 var log = require('../lib/log');
 var shell = require('shelljs');
 
+/** Ssh related methods callable by passing arguments in command line
+ * @module modules/ssh
+ */
 module.exports = {
 	copySshToClipboad: function() {
 		if (config.unix || config.windows.gitBash) {

@@ -7,6 +7,9 @@ var inquire = require('inquirer');
 var log = require('../lib/log');
 var util = require('../lib/util');
 
+/** Configuration related methods callable by passing arguments in command line
+ * @module modules/configExposed
+ */
 module.exports = {
 	changeZipcode: function() {
 		inquire

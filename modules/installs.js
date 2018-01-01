@@ -21,6 +21,9 @@ function checkForInstall(which) {
 	});
 }
 
+/** Software install methods callable by passing arguments in command line
+ * @module modules/installs
+ */
 module.exports = {
 	installNvm: function() {
 		// you'd have to have node to use this tool in the first place, why did I write this?

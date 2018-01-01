@@ -14,6 +14,9 @@ var speedtest = require('speedtest-net');
 var updateNotifier = require('update-notifier');
 var url = require('url');
 
+/** Module for running SpeedTest
+ * @module modules/speedTest
+ */
 module.exports = {
 	test: function() {
 		var cli = meow(

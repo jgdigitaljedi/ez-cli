@@ -41,6 +41,9 @@ function yum(command) {
 		});
 }
 
+/** Linux specific methods callable by passing arguments in command line
+ * @module modules/linux
+ */
 module.exports = {
 	getUpdates: function() {
 		inquire.prompt([ util.sudoPrompt ]).then(function(answer) {
